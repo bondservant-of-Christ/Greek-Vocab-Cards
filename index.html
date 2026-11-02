@@ -4,6 +4,15 @@
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
 <title>Koine Vocabulary</title>
+<link rel="manifest" href="manifest.webmanifest" />
+<meta name="theme-color" content="#EFE7D3" media="(prefers-color-scheme: light)" />
+<meta name="theme-color" content="#191713" media="(prefers-color-scheme: dark)" />
+<meta name="mobile-web-app-capable" content="yes" />
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta name="apple-mobile-web-app-title" content="Koine Vocab" />
+<meta name="apple-mobile-web-app-status-bar-style" content="default" />
+<link rel="apple-touch-icon" href="icons/apple-touch-icon.png" />
+<link rel="icon" type="image/png" href="icons/icon-192.png" />
 <style>
   :root {
     color-scheme: light dark;
@@ -1235,6 +1244,13 @@
 
   goHome();
 })();
+
+// Offline support when the page is served as a website (does nothing elsewhere)
+if ("serviceWorker" in navigator && /^https?:$/.test(location.protocol)) {
+  window.addEventListener("load", function () {
+    try { navigator.serviceWorker.register("sw.js").catch(function () {}); } catch (e) {}
+  });
+}
 </script>
 </body>
 </html>
