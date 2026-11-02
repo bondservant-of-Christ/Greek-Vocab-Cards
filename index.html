@@ -1,0 +1,1240 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<title>Koine Vocabulary</title>
+<style>
+  :root {
+    color-scheme: light dark;
+    --paper: #EFE7D3;
+    --paper-2: #F8F3E6;
+    --edge: #D5C7A4;
+    --ink: #2E2820;
+    --ink-soft: #6E6250;
+    --accent: #7C3A2E;
+    --gold: #A98A४3;
+    --gold: #A98A43;
+    --good: #4C6340;
+    --good-bg: #E2EAD9;
+    --bad: #8A3A33;
+    --bad-bg: #F2DFDB;
+    --shadow: rgba(46,40,32,0.16);
+    box-sizing: border-box;
+    padding-top: env(safe-area-inset-top, 0px);
+    padding-bottom: env(safe-area-inset-bottom, 0px);
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --paper: #191713;
+      --paper-2: #23201A;
+      --edge: #3C362C;
+      --ink: #EDE5D4;
+      --ink-soft: #A2977F;
+      --accent: #D08A78;
+      --gold: #C6A55C;
+      --good: #A8C795;
+      --good-bg: #2A3324;
+      --bad: #E0A099;
+      --bad-bg: #3A2623;
+      --shadow: rgba(0,0,0,0.5);
+    }
+  }
+  :root[data-theme="dark"] {
+    --paper: #191713;
+    --paper-2: #23201A;
+    --edge: #3C362C;
+    --ink: #EDE5D4;
+    --ink-soft: #A2977F;
+    --accent: #D08A78;
+    --gold: #C6A55C;
+    --good: #A8C795;
+    --good-bg: #2A3324;
+    --bad: #E0A099;
+    --bad-bg: #3A2623;
+    --shadow: rgba(0,0,0,0.5);
+  }
+  * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+  html { height: 100%; scroll-padding-top: env(safe-area-inset-top, 0px); }
+  body {
+    margin: 0;
+    min-height: 100%;
+    background: var(--paper);
+    color: var(--ink);
+    font-family: Georgia, "Iowan Old Style", "Times New Roman", serif;
+    -webkit-font-smoothing: antialiased;
+  }
+  .wrap {
+    max-width: 520px;
+    margin: 0 auto;
+    padding: 18px 16px 28px;
+  }
+
+  /* ---- header ---- */
+  header {
+    text-align: center;
+    padding-bottom: 14px;
+    border-bottom: 1px solid var(--edge);
+    margin-bottom: 18px;
+    position: relative;
+  }
+  header h1 {
+    font-size: 19px;
+    font-weight: 400;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    margin: 0;
+  }
+  header .sub {
+    font-size: 12px;
+    color: var(--ink-soft);
+    font-style: italic;
+    margin-top: 3px;
+  }
+  .back {
+    position: absolute;
+    left: 0; top: 0;
+    background: none; border: none;
+    color: var(--ink-soft);
+    font-family: inherit; font-size: 20px;
+    padding: 0 8px 0 0;
+    cursor: pointer; line-height: 1;
+  }
+
+  /* ---- deck list ---- */
+  .deck {
+    display: block;
+    width: 100%;
+    text-align: left;
+    background: var(--paper-2);
+    border: 1px solid var(--edge);
+    border-radius: 3px;
+    padding: 14px 16px;
+    margin-bottom: 10px;
+    font-family: inherit;
+    color: var(--ink);
+    cursor: pointer;
+    box-shadow: 0 1px 2px var(--shadow);
+  }
+  .deck:active { transform: translateY(1px); }
+  .deck .dt { font-size: 16px; margin-bottom: 3px; }
+  .deck .dm { font-size: 12px; color: var(--ink-soft); display: flex; justify-content: space-between; gap: 10px; }
+  .bar {
+    height: 3px;
+    background: var(--edge);
+    border-radius: 2px;
+    margin-top: 9px;
+    overflow: hidden;
+  }
+  .bar > i { display: block; height: 100%; background: var(--gold); width: 0%; }
+
+  .section-label {
+    font-size: 11px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+    margin: 22px 0 10px;
+  }
+
+  /* ---- study screen ---- */
+  .meta {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 12px;
+    color: var(--ink-soft);
+    margin-bottom: 10px;
+  }
+  .scene { perspective: 1200px; margin-bottom: 16px; }
+  .card {
+    position: relative;
+    width: 100%;
+    min-height: 280px;
+    transform-style: preserve-3d;
+    transition: transform 0.45s cubic-bezier(.4,.2,.2,1);
+    cursor: pointer;
+  }
+  .card.flipped { transform: rotateY(180deg); }
+  .face {
+    position: absolute;
+    inset: 0;
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+    background: var(--paper-2);
+    border: 1px solid var(--edge);
+    border-radius: 4px;
+    box-shadow: 0 2px 8px var(--shadow);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 26px 22px;
+    overflow-y: auto;
+  }
+  .face.back { transform: rotateY(180deg); }
+  .greek {
+    font-size: 38px;
+    line-height: 1.25;
+    margin-bottom: 8px;
+    word-break: break-word;
+  }
+  .lexform { font-size: 14px; color: var(--ink-soft); }
+  .tapnote {
+    position: absolute;
+    bottom: 12px; left: 0; right: 0;
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+    opacity: 0.7;
+  }
+  .def { font-size: 22px; line-height: 1.45; }
+  .pp { font-size: 14px; line-height: 1.5; color: var(--ink-soft); margin-top: 10px; max-width: 340px; }
+  .note {
+    font-size: 13px;
+    line-height: 1.55;
+    color: var(--ink-soft);
+    font-style: italic;
+    margin-top: 14px;
+    border-top: 1px solid var(--edge);
+    padding-top: 12px;
+    max-width: 340px;
+  }
+  .freq {
+    font-size: 11px;
+    letter-spacing: 0.08em;
+    color: var(--ink-soft);
+    margin-top: 10px;
+  }
+  .hintbtn {
+    background: none;
+    border: 1px solid var(--edge);
+    color: var(--ink-soft);
+    font-family: inherit;
+    font-size: 12px;
+    padding: 5px 12px;
+    border-radius: 999px;
+    margin-top: 16px;
+    cursor: pointer;
+  }
+  .hinttext { font-size: 13px; font-style: italic; color: var(--ink-soft); margin-top: 14px; max-width: 320px; }
+
+  .actions { display: flex; gap: 10px; }
+  .btn {
+    flex: 1;
+    font-family: inherit;
+    font-size: 14px;
+    padding: 13px 10px;
+    border-radius: 3px;
+    border: 1px solid var(--edge);
+    background: var(--paper-2);
+    color: var(--ink);
+    cursor: pointer;
+  }
+  .btn:active { transform: translateY(1px); }
+  .btn.good { background: var(--good-bg); border-color: var(--good); color: var(--good); }
+  .btn.bad { background: var(--bad-bg); border-color: var(--bad); color: var(--bad); }
+  .btn.solid { background: var(--ink); color: var(--paper); border-color: var(--ink); }
+  .toolbar {
+    display: flex;
+    justify-content: center;
+    gap: 18px;
+    margin-top: 18px;
+    font-size: 12px;
+  }
+  .toolbar button {
+    background: none; border: none;
+    color: var(--ink-soft);
+    font-family: inherit; font-size: 12px;
+    cursor: pointer;
+    text-decoration: underline;
+    text-underline-offset: 3px;
+    padding: 4px;
+  }
+
+  /* ---- overall progress ---- */
+  .overall {
+    background: var(--paper-2);
+    border: 1px solid var(--edge);
+    border-radius: 3px;
+    padding: 16px 18px;
+    margin-bottom: 18px;
+    box-shadow: 0 1px 2px var(--shadow);
+  }
+  .overall .ot {
+    font-size: 11px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+    margin-bottom: 8px;
+  }
+  .overall .orow {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    margin-bottom: 6px;
+  }
+  .overall .opct { font-size: 26px; }
+  .overall .owords { font-size: 12px; color: var(--ink-soft); text-align: right; }
+  .overall .bar { height: 6px; margin-top: 4px; }
+
+  /* ---- tabs ---- */
+  .tabs {
+    display: flex;
+    gap: 6px;
+    margin-bottom: 16px;
+  }
+  .tabbtn {
+    flex: 1;
+    font-family: inherit;
+    font-size: 13px;
+    padding: 9px 8px;
+    border-radius: 3px;
+    border: 1px solid var(--edge);
+    background: transparent;
+    color: var(--ink-soft);
+    cursor: pointer;
+  }
+  .tabbtn.active { background: var(--ink); color: var(--paper); border-color: var(--ink); }
+
+  /* ---- charts ---- */
+  .chart-block { margin-bottom: 28px; }
+  .chart-title {
+    font-size: 15px;
+    margin-bottom: 3px;
+  }
+  .chart-note {
+    font-size: 12px;
+    color: var(--ink-soft);
+    font-style: italic;
+    margin-bottom: 10px;
+  }
+  table.paradigm {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 14px;
+    background: var(--paper-2);
+    border: 1px solid var(--edge);
+  }
+  table.paradigm th, table.paradigm td {
+    border: 1px solid var(--edge);
+    padding: 7px 8px;
+    text-align: center;
+  }
+  table.paradigm th {
+    font-style: italic;
+    font-weight: 400;
+    color: var(--ink-soft);
+    font-size: 12px;
+    background: rgba(0,0,0,0.02);
+  }
+  table.paradigm td.rowlabel, table.paradigm th.rowlabel {
+    text-align: left;
+    font-style: italic;
+    color: var(--ink-soft);
+    font-size: 12px;
+    white-space: nowrap;
+  }
+  table.paradigm .greekcell { font-size: 16px; }
+
+  /* ---- search ---- */
+  .searchbox { position: relative; margin-bottom: 16px; }
+  .searchbox input {
+    width: 100%;
+    font-family: inherit;
+    font-size: 16px;
+    padding: 11px 40px 11px 12px;
+    border: 1px solid var(--edge);
+    border-radius: 3px;
+    background: var(--paper-2);
+    color: var(--ink);
+    -webkit-appearance: none;
+    appearance: none;
+  }
+  .searchbox input:focus { outline: 2px solid var(--gold); outline-offset: 1px; }
+  .searchbox .sclear {
+    position: absolute; right: 2px; top: 50%;
+    transform: translateY(-50%);
+    background: none; border: none;
+    color: var(--ink-soft);
+    font-size: 22px; line-height: 1;
+    padding: 6px 12px;
+    cursor: pointer;
+  }
+  .rescount { font-size: 12px; color: var(--ink-soft); margin-bottom: 8px; }
+  .nores { font-size: 14px; color: var(--ink-soft); font-style: italic; padding: 22px 0; text-align: center; }
+  .sres {
+    background: var(--paper-2);
+    border: 1px solid var(--edge);
+    border-radius: 3px;
+    margin-bottom: 8px;
+    box-shadow: 0 1px 2px var(--shadow);
+  }
+  .srow {
+    display: flex; align-items: center; gap: 12px;
+    width: 100%; text-align: left;
+    background: none; border: none;
+    padding: 12px 14px;
+    font-family: inherit; color: var(--ink);
+    cursor: pointer;
+  }
+  .srow .sg { font-size: 20px; flex: 0 1 auto; max-width: 50%; word-break: break-word; }
+  .srow .sd { font-size: 13px; color: var(--ink-soft); flex: 1; text-align: right; }
+  .sdot {
+    flex: 0 0 10px; width: 10px; height: 10px;
+    border-radius: 50%;
+    border: 1.5px solid var(--gold);
+  }
+  .sdot.known { background: var(--gold); }
+  .sdetail { padding: 0 14px 14px; font-size: 13px; line-height: 1.55; border-top: 1px dotted var(--edge); }
+  .sdetail .sfull { font-size: 15px; margin-top: 10px; }
+  .sdetail .snote { color: var(--ink-soft); font-style: italic; margin-top: 8px; }
+  .sdetail .smeta { color: var(--ink-soft); font-size: 11px; letter-spacing: 0.06em; margin-top: 8px; }
+  .stoggle {
+    margin-top: 10px;
+    font-family: inherit; font-size: 12px;
+    padding: 7px 12px;
+    border: 1px solid var(--edge);
+    border-radius: 999px;
+    background: none; color: var(--ink-soft);
+    cursor: pointer;
+  }
+
+  /* ---- done screen ---- */
+  .done { text-align: center; padding-top: 10px; }
+  .done .big { font-size: 46px; margin: 10px 0 2px; }
+  .done .big span { font-size: 20px; color: var(--ink-soft); }
+  .missed { text-align: left; margin-top: 22px; border-top: 1px solid var(--edge); padding-top: 14px; }
+  .mrow {
+    display: flex; justify-content: space-between; gap: 12px;
+    padding: 9px 0; border-bottom: 1px dotted var(--edge);
+    font-size: 14px;
+  }
+  .mrow .mg { font-size: 18px; }
+  .mrow .md { color: var(--ink-soft); text-align: right; flex: 1; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <button class="back" id="backBtn" style="display:none">&#8249;</button>
+    <h1 id="hTitle">Koine Vocabulary</h1>
+    <div class="sub" id="hSub">Basics of Biblical Greek</div>
+  </header>
+  <main id="main"></main>
+</div>
+
+<script>
+(function () {
+  "use strict";
+
+  var DECKS = [
+    {
+      id: "ch4",
+      name: "Chapter 4 — First Nouns",
+      cards: [
+        { g: "ἄγγελος", lex: "–ου, ὁ", d: "angel; messenger", f: 175, n: "The English 'angel' comes straight from this word." },
+        { g: "ἀμήν", lex: "", d: "verily, truly, amen, so let it be", f: 128, n: "Transliterated directly into English as 'amen.'" },
+        { g: "ἄνθρωπος", lex: "–ου, ὁ", d: "man; person, human being; people, mankind", f: 550, n: "Anthropology is the study of humans." },
+        { g: "ἀπόστολος", lex: "–ου, ὁ", d: "apostle; envoy, messenger", f: 81, n: "" },
+        { g: "Γαλιλαία", lex: "–ας, ἡ", d: "Galilee", f: 61, n: "" },
+        { g: "γραφή", lex: "–ῆς, ἡ", d: "writing; Scripture", f: 50, n: "An autograph is a writing of one's own (αὐτός) name." },
+        { g: "δόξα", lex: "–ης, ἡ", d: "glory, majesty, fame", f: 166, n: "A doxology is a 'word' (λόγος) of praise." },
+        { g: "ἐγώ", lex: "", d: "I", f: 1800, n: "The 'ego' or self of a person. Frequency covers all singular forms." },
+        { g: "ἔσχατος", lex: "–η, –ον", d: "last", f: 52, n: "Eschatology is the study of last things." },
+        { g: "ζωή", lex: "–ῆς, ἡ", d: "life", f: 135, n: "Zoology is the study of animal life." },
+        { g: "θεός", lex: "–οῦ, ὁ", d: "God, god", f: 1317, n: "Theology is the study of God." },
+        { g: "καί", lex: "", d: "and; even, also; namely", f: 9162, n: "Triskaidekaphobia: 3 (τρεῖς) and (καί) 10 (δέκα)." },
+        { g: "καρδία", lex: "–ας, ἡ", d: "heart; inner self", f: 156, n: "Cardiology is the study of the heart; the κ became a 'c' in English." },
+        { g: "κόσμος", lex: "–ου, ὁ", d: "world, universe; mankind", f: 186, n: "Cosmology is the philosophical study of the universe." },
+        { g: "λόγος", lex: "–ου, ὁ", d: "word, Word; statement, message", f: 330, n: "Wide range of meaning — from what is spoken to the 'Word' of John 1:1–18. The feminine λογία forms the '-logy' of English compounds." },
+        { g: "πνεῦμα", lex: "–ατος, τό", d: "spirit, Spirit; wind, breath; inner life", f: 379, n: "Greek has no silent consonants, so the π is always pronounced — unlike English 'pneumatic.'" },
+        { g: "προφήτης", lex: "–ου, ὁ", d: "prophet", f: 144, n: "" },
+        { g: "σάββατον", lex: "–ου, τό", d: "Sabbath; week", f: 68, n: "Often occurs in the plural but can be translated as a singular." },
+        { g: "φωνή", lex: "–ῆς, ἡ", d: "sound, noise; voice", f: 139, n: "Think 'phonics,' 'telephone.'" },
+        { g: "Χριστός", lex: "–οῦ, ὁ", d: "Christ, Messiah; Anointed One", f: 529, n: "A title early on; by Acts it is so tied to Jesus that it also works as a personal name." },
+        { g: "Ἀβραάμ", lex: "ὁ", d: "Abraham", f: 73, n: "" },
+        { g: "Δαυίδ", lex: "ὁ", d: "David", f: 59, n: "" },
+        { g: "Παῦλος", lex: "–ου, ὁ", d: "Paul", f: 158, n: "" },
+        { g: "Πέτρος", lex: "–ου, ὁ", d: "Peter", f: 156, n: "" },
+        { g: "Πιλᾶτος", lex: "–ου, ὁ", d: "Pilate", f: 55, n: "" }
+      ]
+    },
+    {
+      id: "ch67",
+      name: "Chapters 6–7 — Genitive & Dative",
+      cards: [
+        { g: "ἁμαρτία", lex: "–ας, ἡ", d: "sin", f: 173, n: "Covers both a specific act ('a sin') and the concept itself. Hamartiology is the study of sin." },
+        { g: "ἀρχή", lex: "–ῆς, ἡ", d: "beginning; ruler", f: 55, n: "An archbishop is the chief bishop; the chief angel is the archangel." },
+        { g: "γάρ", lex: "", d: "for; then", f: 1041, n: "Postpositive — never the first word in its clause." },
+        { g: "εἶπεν", lex: "", d: "he/she/it said", f: 613, n: "Third person singular. An inflected form — its lexical form comes later." },
+        { g: "εἰς", lex: "", d: "into; in", f: 1767, n: "Eisegesis reads meaning into the text; exegesis draws it out." },
+        { g: "ἐξουσία", lex: "–ας, ἡ", d: "authority, power", f: 102, n: "" },
+        { g: "εὐαγγέλιον", lex: "–ου, τό", d: "good news, Gospel", f: 76, n: "An evangelist preaches the good news." },
+        { g: "Ἰησοῦς", lex: "–οῦ, ὁ", d: "Jesus, Joshua", f: 917, n: "" },
+        { g: "κύριος", lex: "–ου, ὁ", d: "Lord; lord, master, sir", f: 716, n: "Kyrie eleison — 'Lord, have mercy' — is a petitionary prayer." },
+        { g: "μή", lex: "", d: "not, lest", f: 1042, n: "Same meaning as οὐ but used in different situations. οὐ μή together = emphatic 'No!'" },
+        { g: "οὐρανός", lex: "–οῦ, ὁ", d: "heaven; sky", f: 273, n: "Uranus is the Greek god of heaven. Often plural in Greek; translate as singular when it fits." },
+        { g: "οὗτος, αὕτη, τοῦτο", lex: "", d: "singular: this (one); plural: these", f: 1387, n: "Adjective: 'this/these.' Noun: 'this one.' The initial τ is sometimes replaced with a rough breathing." },
+        { g: "σύ", lex: "", d: "you (singular)", f: 1067, n: "Always singular — Greek has a separate form for plural 'you.'" },
+        { g: "υἱός", lex: "–οῦ, ὁ", d: "son; descendant", f: 377, n: "Also used of a person closely associated as if by ties of sonship." },
+        { g: "ὥστε", lex: "", d: "therefore, so that", f: 83, n: "" }
+      ]
+    },
+    {
+      id: "ch8",
+      name: "Chapter 8 — Prepositions & εἰμί",
+      cards: [
+        { g: "ἀλλά", lex: "(ἀλλ᾿)", d: "but, yet; rather", f: 638, n: "Before a vowel the final α elides: ἀλλὰ Ἰησοῦς → ἀλλ᾿ Ἰησοῦς." },
+        { g: "ἀπό", lex: "(ἀπ᾿, ἀφ᾿)", d: "gen: (away) from", f: 646, n: "Before a vowel → ἀπ᾿; before a vowel with rough breathing → ἀφ᾿. Apostasy is standing off from the truth." },
+        { g: "διά", lex: "(δι᾿)", d: "gen: through · acc: on account of", f: 667, n: "A diameter measures through the middle of an object." },
+        { g: "εἰμί", lex: "", d: "I am, exist, live, am present", f: 2462, n: "" },
+        { g: "ἐκ", lex: "(ἐξ)", d: "gen: from, out of", f: 914, n: "Written ἐξ before a vowel. Ecstasy is to stand outside oneself." },
+        { g: "ἡμέρα", lex: "–ας, ἡ", d: "day", f: 389, n: "Ephemeral means lasting only a day." },
+        { g: "ἦν", lex: "", d: "he/she/it was", f: 315, n: "" },
+        { g: "θάλασσα", lex: "–ης, ἡ", d: "sea, lake", f: 91, n: "Thalassian means pertaining to the sea." },
+        { g: "θάνατος", lex: "–ου, ὁ", d: "death", f: 120, n: "Euthanasia is an 'easy death'; thanatophobia is fear of death." },
+        { g: "ἵνα", lex: "", d: "in order that; that; so that", f: 663, n: "" },
+        { g: "Ἰωάννης", lex: "–ου, ὁ", d: "John", f: 135, n: "Follows the same pattern as προφήτης." },
+        { g: "λέγω", lex: "", d: "I say, speak", f: 2353, n: "" },
+        { g: "μετά", lex: "(μετ᾿, μεθ᾿)", d: "gen: with · acc: after", f: 469, n: "With the genitive the object is usually a person; σύν is used for impersonal objects. Metaphysics comes after physics." },
+        { g: "οἰκία", lex: "–ας, ἡ", d: "house, home", f: 93, n: "No real difference in meaning from οἶκος." },
+        { g: "οἶκος", lex: "–ου, ὁ", d: "house, home", f: 114, n: "No real difference in meaning from οἰκία." },
+        { g: "ὄχλος", lex: "–ου, ὁ", d: "crowd, multitude", f: 175, n: "Ochlocracy is mob rule." },
+        { g: "παρά", lex: "(παρ᾿)", d: "gen: from · dat: beside, in the presence of · acc: alongside of", f: 194, n: "A paragraph was originally a line in the margin beside the writing." },
+        { g: "παραβολή", lex: "–ῆς, ἡ", d: "parable", f: 50, n: "A story 'thrown beside' (παρά + βάλλω) life." },
+        { g: "πρός", lex: "", d: "acc: to, towards; with", f: 700, n: "A proselyte is one who has come over to another religion." },
+        { g: "ὑπό", lex: "(ὑπ᾿, ὑφ᾿)", d: "gen: by · acc: under", f: 220, n: "Before a vowel → ὑπ᾿; before rough breathing → ὑφ᾿." }
+      ]
+    },
+    {
+      id: "ch9",
+      name: "Chapter 9 — Adjectives",
+      cards: [
+        { g: "ἀγαθός", lex: "–ή, –όν", d: "good, useful", f: 102, n: "Agatha is a woman's name from this word." },
+        { g: "ἀγαπητός", lex: "–ή, –όν", d: "beloved", f: 61, n: "The cognate adjective of the noun ἀγάπη." },
+        { g: "ἅγιος", lex: "–ία, –ιον", d: "adjective: holy · plural noun: saints", f: 233, n: "The Hagiographa are the holy writings; hagiolatry is the worship of saints." },
+        { g: "αἰώνιος", lex: "–ον", d: "eternal", f: 71, n: "Aeonian means 'eternal.'" },
+        { g: "ἀλλήλων", lex: "", d: "one another", f: 100, n: "Never occurs in the nominative or singular, so its lexical form is genitive plural. Parallel lines run beside one another." },
+        { g: "ἀπεκρίθη", lex: "", d: "he/she/it answered", f: 82, n: "Takes its direct object in the dative — ἀπεκρίθη αὐτῷ is 'He answered him,' not 'He answered to him.'" },
+        { g: "δοῦλος", lex: "–ου, ὁ", d: "slave; servant", f: 126, n: "" },
+        { g: "ἐάν", lex: "", d: "if; when", f: 349, n: "A crasis of εἰ and ἄν. After a relative pronoun it adds '-ever' (ὃς ἐάν = 'whoever')." },
+        { g: "ἐμός, ἐμή, ἐμόν", lex: "", d: "my, mine", f: 76, n: "Always means 'my' regardless of case; used substantivally it means 'mine.'" },
+        { g: "ἐντολή", lex: "–ῆς, ἡ", d: "commandment", f: 67, n: "" },
+        { g: "καθώς", lex: "", d: "as, even as", f: 182, n: "" },
+        { g: "κακός", lex: "–ή, –όν", d: "bad, evil", f: 50, n: "Cacophony is a bad sound; cacography is poor writing." },
+        { g: "μου", lex: "(ἐμοῦ)", d: "my", f: null, n: "Genitive singular of ἐγώ. Unlike ἐμός, only means 'my' in the genitive." },
+        { g: "νεκρός", lex: "–ά, –όν", d: "adjective: dead · noun: dead body, corpse", f: 128, n: "Necrophobia is an abnormal fear of death." },
+        { g: "πιστός", lex: "–ή, –όν", d: "faithful, believing", f: 67, n: "" },
+        { g: "πονηρός", lex: "–ά, –όν", d: "evil, bad", f: 78, n: "" },
+        { g: "πρῶτος", lex: "–η, –ον", d: "first; earlier", f: 155, n: "Think 'prototype,' 'protagonist.'" },
+        { g: "τρίτος", lex: "–η, –ον", d: "third", f: 56, n: "" }
+      ]
+    },
+    {
+      id: "ei-tis",
+      name: "Chapter 10 — εἰ – τις",
+      cards: [
+        { g: "εἰ", lex: "", d: "if", f: 502, n: "Not the same as εἶ ('you are') — watch the accents; εἰ has no accent of its own. Always introduces a dependent clause." },
+        { g: "εἰ μή", lex: "", d: "except; if not", f: 86, n: "Together these can form an idiom meaning 'except.' An idiom's meaning is not the sum of its parts." },
+        { g: "εἷς, μία, ἕν", lex: "", d: "one", f: 345, n: "Hendiadys is from ἓν διὰ δυοῖν, 'one thing by means of two.' Henotheism is belief in one God while allowing others exist." },
+        { g: "ἤδη", lex: "", d: "now, already", f: 61, n: "" },
+        { g: "ὄνομα", lex: "–ατος, τό", d: "name; reputation", f: 230, n: "Onomatopoeia is when a word's name sounds like its meaning." },
+        { g: "οὐδείς, οὐδεμία, οὐδέν", lex: "", d: "no one, none, nothing", f: 227, n: "The second half declines just like εἷς." },
+        { g: "πᾶς, πᾶσα, πᾶν", lex: "", d: "singular: each, every · plural: all", f: 1243, n: "Pantheism is the belief that God is in all things." },
+        { g: "περί", lex: "", d: "gen: concerning, about · acc: around", f: 333, n: "The perimeter is the boundary around an object or area." },
+        { g: "σάρξ", lex: "σαρκός, ἡ", d: "flesh; body", f: 147, n: "A sarcophagus is a stone coffin — limestone was believed to eat (φαγέω) the flesh." },
+        { g: "σύν", lex: "", d: "dat: with", f: 128, n: "A synagogue is a place where people come together." },
+        { g: "σῶμα", lex: "–ατος, τό", d: "body", f: 142, n: "Somatology is the study of the body. Distinguish from σάρξ, 'flesh.'" },
+        { g: "τέκνον", lex: "–ου, τό", d: "child; descendant", f: 99, n: "Teknonymy is the custom of naming the parent from the child." },
+        { g: "τίς, τί", lex: "", d: "who? what? which? why?", f: 555, n: "Accented — the interrogative. When it means 'why?' it is neuter (τί)." },
+        { g: "τις, τι", lex: "", d: "someone/thing; certain one/thing; anyone/thing", f: 525, n: "Unaccented — the indefinite. Easy to confuse with τίς." }
+      ]
+    },
+    {
+      id: "ch10-11",
+      name: "Chapter 11 — Personal Pronouns",
+      cards: [
+        { g: "ἀδελφός", lex: "–οῦ, ὁ", d: "brother", f: 343, n: "Philadelphia is the city of brotherly love. Can describe members of God's family — some versions render it 'brother and sister.'" },
+        { g: "ἄν", lex: "", d: "an untranslatable, uninflected particle making a statement contingent (e.g. turning 'who' into 'whoever')", f: 166, n: "You usually cannot translate it directly." },
+        { g: "ἀνήρ", lex: "ἀνδρός, ὁ", d: "male, husband; man", f: 216, n: "Androgynous (ἀνδρόγυνος) is being both male and female." },
+        { g: "ἐκκλησία", lex: "–ας, ἡ", d: "a church, (the) Church; assembly, congregation", f: 114, n: "Ecclesiology is the study of the church; 'ecclesiastical' relates to church organization." },
+        { g: "ἐλπίς", lex: "–ίδος, ἡ", d: "hope, expectation", f: 53, n: "The Christian 'hope' is confident anticipation of what will surely come, not mere wondering." },
+        { g: "ἔξω", lex: "", d: "adverb: without · preposition (gen): outside", f: 63, n: "" },
+        { g: "ἐπί", lex: "(ἐπ᾿, ἐφ᾿)", d: "gen: on, over, when · dat: on the basis of, at · acc: on, to, against", f: 890, n: "The epidermis is 'that which is on the skin.' Before a smooth-breathing vowel it elides to ἐπ᾿; before rough breathing, ἐφ᾿." },
+        { g: "ἡμεῖς", lex: "", d: "we", f: 863, n: "Frequency includes all plural forms." },
+        { g: "θέλημα", lex: "θελήματος, τό", d: "will, desire", f: 62, n: "Monothelitism was a 7th-century heresy claiming Jesus had two natures but only one will." },
+        { g: "ἴδε", lex: "(interjection)", d: "See! Behold!", f: 29, n: "Originally an aorist active imperative of εἶδον; same basic meaning as ἰδού." },
+        { g: "ἰδού", lex: "(interjection)", d: "See! Behold!", f: 200, n: "The aorist middle imperative form of εἶδον, but frequent enough to treat as its own word." },
+        { g: "καλός", lex: "–ή, –όν", d: "good; beautiful", f: 101, n: "Calligraphy is 'beautiful handwriting.'" },
+        { g: "μήτηρ", lex: "μητρός, ἡ", d: "mother", f: 83, n: "A matriarchal society is one where the mother is the dominant figure." },
+        { g: "οὐδέ", lex: "", d: "and not, not even; neither, nor", f: 143, n: "" },
+        { g: "πατήρ", lex: "πατρός, ὁ", d: "father", f: 413, n: "The patriarch is the father and head of a family or tribe." },
+        { g: "πίστις", lex: "πίστεως, ἡ", d: "faith, belief; trust; teaching", f: 243, n: "Pistology is the study of faith. 'Teaching' in the sense of what is believed." },
+        { g: "ὕδωρ", lex: "ὕδατος, τό", d: "water", f: 76, n: "Hydrology is the study of water; 'hydraulic' refers to something water-operated." },
+        { g: "ὑμεῖς", lex: "", d: "you (plural)", f: 1840, n: "Frequency includes all plural inflected forms." },
+        { g: "φῶς", lex: "φωτός, τό", d: "light", f: 73, n: "A photograph is a picture drawn by light." },
+        { g: "χάρις", lex: "χάριτος, ἡ", d: "grace, favor, kindness", f: 155, n: "" },
+        { g: "ὧδε", lex: "", d: "here", f: 61, n: "" }
+      ]
+    },
+    {
+      id: "ch12",
+      name: "Chapter 12 — αὐτός",
+      cards: [
+        { g: "αἰών", lex: "–ῶνος, ὁ", d: "age, eternity", f: 122, n: "εἰς τὸν αἰῶνα and εἰς τοὺς αἰώνας τῶν αἰώνων both mean 'forever.'" },
+        { g: "διδάσκαλος", lex: "–ου, ὁ", d: "teacher", f: 59, n: "Different teachers have different didactic (διδακτικός) methods." },
+        { g: "εὐθύς", lex: "", d: "immediately", f: 51, n: "Distinct from the adjective εὐθύς, –εῖα, –ύ, meaning 'straight.'" },
+        { g: "ἕως", lex: "", d: "conj: until · preposition (gen): as far as", f: 146, n: "" },
+        { g: "μαθητής", lex: "–οῦ, ὁ", d: "disciple", f: 261, n: "A disciple is a 'learner' — related to μάθημα ('that which is learned') and μαθηματική. Declines just like προφήτης." },
+        { g: "μέν", lex: "", d: "on the one hand; indeed", f: 179, n: "Postpositive, sometimes untranslatable. As a correlative with δέ: 'on the one hand ... but on the other.'" },
+        { g: "μηδείς, μηδεμία, μηδέν", lex: "", d: "no one/thing", f: 90, n: "Declines just like οὐδείς." },
+        { g: "μόνος", lex: "–η, –ον", d: "alone, only", f: 114, n: "A monogamous marriage is one with only one spouse. Often used adverbially as μόνον." },
+        { g: "ὅπως", lex: "", d: "how; (in order) that", f: 53, n: "" },
+        { g: "ὅσος", lex: "–η, –ον", d: "as great as, as many as", f: 110, n: "The initial ὁσ stays fixed; the second half declines like the relative pronoun (e.g. nom pl masc ὅσοι). Idiomatic — rely on context." },
+        { g: "οὖν", lex: "", d: "therefore, accordingly; then", f: 498, n: "Postpositive." },
+        { g: "ὀφθαλμός", lex: "–οῦ, ὁ", d: "eye, sight", f: 100, n: "Ophthalmology is the study of the eye." },
+        { g: "πάλιν", lex: "", d: "again", f: 141, n: "A palimpsest is a parchment scraped clean to be reused; palilogy is the repetition of words for emphasis." },
+        { g: "πούς", lex: "ποδός, ὁ", d: "foot", f: 93, n: "A podiatrist treats foot disorders. Declines like ἐλπίς, ἐλπίδος, except the ο lengthens to ου in the nom sg (*ποδ + ς → πούς); dat pl is ποσί(ν)." },
+        { g: "ὑπέρ", lex: "", d: "gen: in behalf of · acc: above", f: 150, n: "'Hyper-' designates excess or abundance — a hyperbole is an exaggeration for effect." }
+      ]
+    },
+    {
+      id: "ch13",
+      name: "Chapter 13 — Demonstratives",
+      cards: [
+        { g: "γυνή", lex: "γυναικός, ἡ", d: "woman; wife", f: 215, n: "Declined like σάρξ — the ικ is lost in the nominative singular. Gynecology is the branch of medicine dealing with women's health." },
+        { g: "δικαιοσύνη", lex: "–ης, ἡ", d: "righteousness", f: 92, n: "" },
+        { g: "δώδεκα", lex: "(indeclinable)", d: "twelve", f: 75, n: "A dodecagon has twelve sides and twelve angles." },
+        { g: "ἑαυτοῦ", lex: "–ῆς, –οῦ", d: "singular: himself/herself/itself · plural: themselves", f: 319, n: "The reflexive pronoun — can never occur in the nominative, so its lexical form is genitive singular. Follows the same pattern as αὐτός. In the plural it can also mean 'ourselves' or 'yourselves' if the verb calls for it." },
+        { g: "ἐκεῖνος", lex: "–η, –ο", d: "singular: that man/woman/thing · plural: those men/women/things", f: 265, n: "" },
+        { g: "ἤ", lex: "", d: "or; than", f: 343, n: "Don't confuse with the article ἡ, which always has a rough breathing." },
+        { g: "κἀγώ", lex: "(indeclinable)", d: "and I, but I", f: 76, n: "A crasis of καί and ἐγώ. The frequency includes the forms κἀμέ and κἀμοί." },
+        { g: "μακάριος", lex: "–ία, –ιον", d: "blessed, happy", f: 50, n: "Related to the cognate 'macarism,' a beatitude." },
+        { g: "μέγας, μεγάλη, μέγα", lex: "", d: "large; great", f: 243, n: "'Mega-' is a common prefix for 'large' or 'great': megaphone, megavolt, Megalosaurus." },
+        { g: "πόλις", lex: "–εως, ἡ", d: "city, town", f: 163, n: "Metropolis ('mother-city') is the parent city of a colony; came to mean any capital or large city." },
+        { g: "πολύς, πολλή, πολύ", lex: "", d: "singular: much · plural: many · adverb: often", f: 416, n: "'Poly-' means 'many': polysyllabic, polygamy, polyglot, polygon." },
+        { g: "πῶς", lex: "", d: "how?", f: 118, n: "" },
+        { g: "σημεῖον", lex: "–ου, τό", d: "sign, miracle", f: 77, n: "" }
+      ]
+    },
+    {
+      id: "ch14",
+      name: "Chapter 14 — Relative Pronoun",
+      cards: [
+        { g: "ἀλήθεια", lex: "–ας, ἡ", d: "truth", f: 109, n: "The name Alethea means 'truth'; alethiology is the study of truth." },
+        { g: "εἰρήνη", lex: "–ης, ἡ", d: "peace", f: 92, n: "'Irenic' means peaceful; the name Irene comes from this word." },
+        { g: "ἐνώπιον", lex: "", d: "gen: before", f: 94, n: "" },
+        { g: "ἐπαγγελία", lex: "–ας, ἡ", d: "promise", f: 52, n: "" },
+        { g: "ἑπτά", lex: "(indeclinable)", d: "seven", f: 88, n: "A heptagon has seven sides." },
+        { g: "θρόνος", lex: "–ου, ὁ", d: "throne", f: 62, n: "" },
+        { g: "Ἰερουσαλήμ", lex: "ἡ, (indeclinable)", d: "Jerusalem", f: 77, n: "The word itself doesn't decline, but the article modifying it will." },
+        { g: "κατά", lex: "(κατ᾿, καθ᾿)", d: "gen: down from, against · acc: according to, throughout, during", f: 473, n: "'Cata-' means 'down': catabasis, catalogue, catastrophe. Elides to κατ᾿ before a smooth-breathing vowel, καθ᾿ before rough breathing." },
+        { g: "κεφαλή", lex: "–ῆς, ἡ", d: "head", f: 75, n: "Hydrocephalus is excess water in the cranium causing brain damage." },
+        { g: "ὁδός", lex: "–οῦ, ἡ", d: "way, road; journey; conduct", f: 101, n: "Looks like λόγος (2nd declension, –ος ending) but is feminine — the article modifying it is always feminine." },
+        { g: "ὅς, ἥ, ὅ", lex: "", d: "who (whom), which", f: 1399, n: "The relative pronoun." },
+        { g: "ὅτε", lex: "", d: "when", f: 103, n: "Don't confuse with ὅτι." },
+        { g: "οὕτως", lex: "", d: "thus, so; in this manner", f: 208, n: "" },
+        { g: "πλοῖον", lex: "–ου, τό", d: "ship, boat", f: 67, n: "" },
+        { g: "ῥῆμα", lex: "–ατος, τό", d: "word, saying", f: 68, n: "" },
+        { g: "τέ", lex: "", d: "and (so), so", f: 215, n: "Postpositive, and weaker in force than καί." },
+        { g: "χείρ", lex: "χειρός, ἡ", d: "hand", f: 177, n: "" },
+        { g: "ψυχή", lex: "–ῆς, ἡ", d: "life; soul; self", f: 103, n: "" }
+      ]
+    },
+    {
+      id: "ch16",
+      name: "Chapter 16 — Present Active Indicative",
+      cards: [
+        { g: "ἀκούω", lex: "", d: "I hear; learn, obey; understand", pp: "(ἤκουον), ἀκούσω, ἤκουσα, ἀκήκοα, –, ἠκούσθην", f: 428, n: "Can take a direct object in either the genitive or the accusative. Acoustics is the science of sound." },
+        { g: "βλέπω", lex: "", d: "I see, look at", pp: "(ἔβλεπον), βλέψω, ἔβλεψα, –, –, –", f: 132, n: "" },
+        { g: "ἔχω", lex: "", d: "I have, hold", pp: "(εἶχον), ἕξω, ἔσχον, ἔσχηκα, –, –", f: 708, n: "In the present tense the σ of the root (*σεχ) becomes a rough breathing, which is then lost because of the χ: *σεχ → ἑχ → ἔχω." },
+        { g: "λέγω", lex: "", d: "I say, speak", pp: "(ἔλεγον), ἐρῶ, εἶπον, εἴρηκα, εἴρημαι, ἐρρέθην", f: 2353, same: "ch8|λέγω", n: "Repeated from Chapter 8, now with its principal parts. Ignore the ϟ in the root for now. Your progress on this card is shared with the Chapter 8 card." },
+        { g: "λύω", lex: "", d: "I loose, untie, destroy", pp: "(ἔλυον), λύσω, ἔλυσα, –, λέλυμαι, ἐλύθην", f: 42, n: "Occurs fewer than fifty times, but it is the paradigm verb, so you will learn it anyway." },
+        { g: "νόμος", lex: "–ου, ὁ", d: "law; principle", f: 194, n: "An autonomous (αὐτόνομος) person is self-governed." },
+        { g: "ὅπου", lex: "", d: "where", f: 82, n: "" },
+        { g: "πιστεύω", lex: "", d: "I believe, have faith (in), trust", pp: "(ἐπίστευον), πιστεύσω, ἐπίστευσα, πεπίστευκα, πεπίστευμαι, ἐπιστεύθην", f: 241, n: "Can take a direct object in either the dative or the accusative. The cognate verb of the noun πίστις and the adjective πιστός." },
+        { g: "πρόσωπον", lex: "–ου, τό", d: "face; appearance", f: 76, n: "Prosopography literally means describing a person's face." },
+        { g: "τότε", lex: "", d: "then; thereafter", f: 160, n: "" },
+        { g: "τυφλός", lex: "–ή, –όν", d: "blind", f: 50, n: "" },
+        { g: "χαρά", lex: "–ᾶς, ἡ", d: "joy, delight", f: 59, n: "" }
+      ]
+    },
+    {
+      id: "ch17",
+      name: "Chapter 17 — Contract Verbs",
+      cards: [
+        { g: "ἀγαπάω", lex: "", d: "I love, cherish", pp: "(ἠγάπων), ἀγαπήσω, ἠγάπησα, ἠγάπηκα, ἠγάπημαι, ἠγαπήθην", f: 143, n: "Alpha contract verb. The cognate verb of ἀγάπη and ἀγαπητός." },
+        { g: "δαιμόνιον", lex: "–ου, τό", d: "demon", f: 63, n: "From δαίμων, the source of English 'demon.'" },
+        { g: "ζητέω", lex: "", d: "I seek, desire, try to obtain", pp: "(ἐζήτουν), ζητήσω, ἐζήτησα, –, –, ἐζητήθην", f: 117, n: "Epsilon contract verb." },
+        { g: "καλέω", lex: "", d: "I call, name, invite", pp: "(ἐκάλουν), καλέσω, ἐκάλεσα, κέκληκα, κέκλημαι, ἐκλήθην", f: 148, n: "The digamma (ϟ) in the root explains irregularities in other tenses but does not affect the present. The Paraclete is one 'called alongside' (παρά + κλητός) to aid." },
+        { g: "λαλέω", lex: "", d: "I speak, say", pp: "(ἐλάλουν), λαλήσω, ἐλάλησα, λελάληκα, λελάλημαι, ἐλαλήθην", f: 296, n: "Onomatopoetic: its meaning matches its sound ('lala')." },
+        { g: "οἶδα", lex: "", d: "I know, understand", pp: "εἰδήσω, ᾔδειν, –, –, –", f: 318, n: "A different type of word: actually a perfect (chapter 25) that functions as a present. Paradigm: 1 sg οἶδα, 2 sg οἶδας, 3 sg οἶδε(ν); 1 pl οἴδαμεν, 2 pl οἴδατε, 3 pl οἴδασιν. Ignore the second root for now." },
+        { g: "ὅταν", lex: "", d: "whenever", f: 123, n: "A crasis of ὅτε and ἄν. Introduces a dependent clause." },
+        { g: "πλείων, πλεῖον", lex: "", d: "larger, more", f: 54, n: "πλείων is masculine and feminine, πλεῖον is neuter (a 3-3 adjective). The genitive of both is πλείονος. Often followed by a genitive, where you can use 'than.'" },
+        { g: "πληρόω", lex: "", d: "I fill, complete, fulfill", pp: "(ἐπλήρουν), πληρώσω, ἐπλήρωσα, πεπλήρωκα, πεπλήρωμαι, ἐπληρώθην", f: 86, n: "The only omicron contract verb among those occurring fifty times or more." },
+        { g: "ποιέω", lex: "", d: "I do, make", pp: "(ἐποίουν), ποιήσω, ἐποίησα, πεποίηκα, πεποίημαι, –", f: 568, n: "Wide range of meaning; the translation can be quite idiomatic." },
+        { g: "τηρέω", lex: "", d: "I keep, guard, observe", pp: "(ἐτήρουν), τηρήσω, ἐτήρησα, τετήρηκα, τετήρημαι, ἐτηρήθην", f: 70, n: "" }
+      ]
+    }
+  ];
+
+  var NT_TOTAL_WORDS = 138148;
+
+  var CHARTS = [
+    {
+      title: "Stop Consonants",
+      note: "Grouped by point of articulation and by voicing.",
+      headers: ["", "unvoiced", "voiced", "aspirate", "σ"],
+      rows: [
+        ["Labial", "π", "β", "φ", "ψ"],
+        ["Velar", "κ", "γ", "χ", "ξ"],
+        ["Dental", "τ", "δ", "θ", "σ"]
+      ]
+    },
+    {
+      title: "πᾶς — Full Declension",
+      note: "3rd declension masc/neut, 1st declension fem.",
+      headers: ["", "masc (3)", "fem (1)", "neut (3)"],
+      rows: [
+        ["nom sg", "πᾶς", "πᾶσα", "πᾶν"],
+        ["gen sg", "παντός", "πάσης", "παντός"],
+        ["dat sg", "παντί", "πάσῃ", "παντί"],
+        ["acc sg", "πάντα", "πᾶσαν", "πᾶν"],
+        ["nom pl", "πάντες", "πᾶσαι", "πάντα"],
+        ["gen pl", "πάντων", "πασῶν", "πάντων"],
+        ["dat pl", "πᾶσι(ν)", "πάσαις", "πᾶσι(ν)"],
+        ["acc pl", "πάντας", "πάσας", "πάντα"]
+      ]
+    },
+    {
+      title: "First & Second Declension Nouns (with article)",
+      note: "λόγος (2nd masc), γραφή / ὥρα (1st fem — η-stem vs. α-stem after ε, ι, ρ), ἔργον (2nd neut).",
+      headers: ["", "2 masc", "1 fem", "1 fem", "2 neut"],
+      rows: [
+        ["nom sg", "ὁ λόγος", "ἡ γραφή", "ἡ ὥρα", "τὸ ἔργον"],
+        ["gen sg", "τοῦ λόγου", "τῆς γραφῆς", "τῆς ὥρας", "τοῦ ἔργου"],
+        ["dat sg", "τῷ λόγῳ", "τῇ γραφῇ", "τῇ ὥρᾳ", "τῷ ἔργῳ"],
+        ["acc sg", "τὸν λόγον", "τὴν γραφήν", "τὴν ὥραν", "τὸ ἔργον"],
+        ["nom pl", "οἱ λόγοι", "αἱ γραφαί", "αἱ ὧραι", "τὰ ἔργα"],
+        ["gen pl", "τῶν λόγων", "τῶν γραφῶν", "τῶν ὡρῶν", "τῶν ἔργων"],
+        ["dat pl", "τοῖς λόγοις", "ταῖς γραφαῖς", "ταῖς ὥραις", "τοῖς ἔργοις"],
+        ["acc pl", "τοὺς λόγους", "τὰς γραφάς", "τὰς ὥρας", "τὰ ἔργα"]
+      ]
+    },
+    {
+      title: "εἰμί — Present Indicative",
+      note: "The verb 'to be.'",
+      headers: ["", "form", "meaning"],
+      rows: [
+        ["1st sg", "εἰμί", "I am"],
+        ["2nd sg", "εἶ", "You are"],
+        ["3rd sg", "ἐστίν", "He/she/it is"],
+        ["1st pl", "ἐσμέν", "We are"],
+        ["2nd pl", "ἐστέ", "You (pl) are"],
+        ["3rd pl", "εἰσίν", "They are"]
+      ]
+    }
+  ];
+
+  // ---------- storage ----------
+  var KEY = "koine.progress.v1";
+  function loadProgress() {
+    try {
+      var raw = localStorage.getItem(KEY);
+      return raw ? JSON.parse(raw) : {};
+    } catch (e) { return {}; }
+  }
+  function saveProgress(p) {
+    try { localStorage.setItem(KEY, JSON.stringify(p)); } catch (e) {}
+  }
+  var progress = loadProgress();
+
+  // progress key for a card; a card with `same` shares its state with the earlier card it repeats
+  function pk(deckId, c) {
+    return c.same || (deckId + "|" + c.g);
+  }
+
+  function deckStats(deck) {
+    var known = 0;
+    for (var i = 0; i < deck.cards.length; i++) {
+      if (progress[pk(deck.id, deck.cards[i])] === 1) known++;
+    }
+    return { known: known, total: deck.cards.length };
+  }
+
+  function overallStats() {
+    var wordsKnown = 0, totalWords = 0, occKnown = 0;
+    DECKS.forEach(function (d) {
+      d.cards.forEach(function (c) {
+        if (c.same) return; // repeat of a word already counted in an earlier chapter
+        totalWords++;
+        if (progress[pk(d.id, c)] === 1) {
+          wordsKnown++;
+          if (c.f) occKnown += c.f;
+        }
+      });
+    });
+    var pct = (occKnown / NT_TOTAL_WORDS) * 100;
+    return { wordsKnown: wordsKnown, totalWords: totalWords, occKnown: occKnown, pct: pct };
+  }
+
+  // ---------- state ----------
+  var main = document.getElementById("main");
+  var hTitle = document.getElementById("hTitle");
+  var hSub = document.getElementById("hSub");
+  var backBtn = document.getElementById("backBtn");
+
+  var mainTab = "decks";
+  var view = "home";
+  var deck = null, queue = [], idx = 0, flipped = false, hintShown = false;
+  var sessionRight = 0, sessionMissed = [];
+
+  backBtn.addEventListener("click", function () { goHome(); });
+
+  function goHome() {
+    view = "home";
+    deck = null;
+    backBtn.style.display = "none";
+    hTitle.textContent = "Koine Vocabulary";
+    hSub.textContent = "Basics of Biblical Greek";
+    renderHome();
+  }
+
+  function shuffle(a) {
+    for (var i = a.length - 1; i > 0; i--) {
+      var j = Math.floor(Math.random() * (i + 1));
+      var t = a[i]; a[i] = a[j]; a[j] = t;
+    }
+    return a;
+  }
+
+  function startDeck(d, onlyUnknown) {
+    deck = d;
+    var pool = d.cards.slice();
+    if (onlyUnknown) {
+      pool = pool.filter(function (c) { return progress[pk(d.id, c)] !== 1; });
+      if (!pool.length) pool = d.cards.slice();
+    }
+    queue = shuffle(pool);
+    idx = 0; flipped = false; hintShown = false;
+    sessionRight = 0; sessionMissed = [];
+    view = "study";
+    backBtn.style.display = "block";
+    hTitle.textContent = d.name.split(" — ")[0];
+    hSub.textContent = d.name.split(" — ")[1] || "";
+    renderStudy();
+  }
+
+  // ---------- views ----------
+  function renderTabs() {
+    return '<div class="tabs">' +
+      '<button class="tabbtn' + (mainTab === "decks" ? " active" : "") + '" id="tabDecks">Flashcards</button>' +
+      '<button class="tabbtn' + (mainTab === "charts" ? " active" : "") + '" id="tabCharts">Grammar Charts</button>' +
+      '</div>';
+  }
+
+  function bindTabs() {
+    document.getElementById("tabDecks").addEventListener("click", function () {
+      mainTab = "decks";
+      renderHome();
+    });
+    document.getElementById("tabCharts").addEventListener("click", function () {
+      mainTab = "charts";
+      renderHome();
+    });
+  }
+
+  // ---------- search ----------
+  var searchIndex = null;
+  var lastShown = [];
+  var progressDirty = false;
+
+  function esc(s) {
+    return String(s).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;");
+  }
+
+  // lowercase, strip Greek accents/breathings/apostrophes, fold final sigma
+  function norm(s) {
+    return String(s || "").normalize("NFD")
+      .replace(/[̀-ͯ᾽᾿’']/g, "")
+      .replace(/ς/g, "σ")
+      .toLowerCase();
+  }
+
+  function buildIndex() {
+    searchIndex = [];
+    DECKS.forEach(function (d) {
+      d.cards.forEach(function (c) {
+        searchIndex.push({
+          card: c, deck: d,
+          g: norm(c.g), d: norm(c.d),
+          all: norm([c.g, c.lex, c.d, c.pp, c.n].join(" "))
+        });
+      });
+    });
+  }
+
+  function runSearch(q) {
+    var nq = norm(q).trim();
+    if (!nq) return [];
+    if (!searchIndex) buildIndex();
+    var terms = nq.split(/\s+/);
+    var out = [];
+    searchIndex.forEach(function (e, i) {
+      for (var t = 0; t < terms.length; t++) {
+        if (e.all.indexOf(terms[t]) === -1) return;
+      }
+      var score = 0;
+      if (e.g.indexOf(nq) === 0) score = 4;
+      else if (e.g.indexOf(nq) !== -1) score = 3;
+      else if (e.d.indexOf(nq) !== -1) score = 2;
+      else if (e.d.indexOf(terms[0]) !== -1) score = 1;
+      out.push({ e: e, score: score, i: i });
+    });
+    out.sort(function (a, b) { return b.score - a.score || a.i - b.i; });
+    return out;
+  }
+
+  function renderResults(box, q) {
+    var res = runSearch(q);
+    if (!res.length) {
+      lastShown = [];
+      box.innerHTML = '<div class="nores">No vocabulary matches “' + esc(q.trim()) + '”.</div>';
+      return;
+    }
+    lastShown = res.slice(0, 50);
+    var html = '<div class="rescount">' + res.length + (res.length === 1 ? ' word' : ' words') +
+      (res.length > lastShown.length ? ' — showing the first ' + lastShown.length : '') + '</div>';
+    lastShown.forEach(function (r, k) {
+      var c = r.e.card, d = r.e.deck;
+      var known = progress[pk(d.id, c)] === 1;
+      html += '<div class="sres">' +
+        '<button class="srow" data-k="' + k + '" aria-expanded="false">' +
+          '<span class="sg">' + esc(c.g) + '</span>' +
+          '<span class="sd">' + esc(c.d) + '</span>' +
+          '<span class="sdot ' + (known ? 'known' : '') + '" role="img" aria-label="' + (known ? 'marked known' : 'not yet known') + '"></span>' +
+        '</button>' +
+        '<div class="sdetail" hidden>' +
+          '<div class="sfull">' + esc(c.g) + (c.lex ? ' <span style="color:var(--ink-soft)">' + esc(c.lex) + '</span>' : '') + ' — ' + esc(c.d) + '</div>' +
+          (c.pp ? '<div class="snote" style="font-style:normal">Principal parts: ' + esc(c.pp) + '</div>' : '') +
+          (c.n ? '<div class="snote">' + esc(c.n) + '</div>' : '') +
+          '<div class="smeta">' + esc(d.name) + (c.f ? ' · ' + c.f.toLocaleString() + ' occurrences in the NT' : '') + '</div>' +
+          '<button class="stoggle" data-k="' + k + '">' + (known ? 'Mark as not known' : 'Mark as known') + '</button>' +
+        '</div>' +
+      '</div>';
+    });
+    box.innerHTML = html;
+  }
+
+  function bindSearch() {
+    var si = document.getElementById("searchInput");
+    var sb = document.getElementById("searchResults");
+    var hb = document.getElementById("homeBody");
+    var sc = document.getElementById("searchClear");
+    if (!si || !sb || !hb || !sc) return;
+
+    function update() {
+      var q = si.value;
+      if (!q.trim()) {
+        if (progressDirty) {
+          progressDirty = false;
+          renderHome();
+          var ni = document.getElementById("searchInput");
+          if (ni) ni.focus();
+          return;
+        }
+        sb.style.display = "none"; sb.innerHTML = "";
+        hb.style.display = ""; sc.style.display = "none";
+        return;
+      }
+      hb.style.display = "none"; sb.style.display = ""; sc.style.display = "";
+      renderResults(sb, q);
+    }
+
+    si.addEventListener("input", update);
+    sc.addEventListener("click", function () {
+      si.value = "";
+      update();
+      si.focus();
+    });
+
+    sb.addEventListener("click", function (ev) {
+      var tog = ev.target.closest(".stoggle");
+      if (tog) {
+        var r = lastShown[parseInt(tog.getAttribute("data-k"), 10)];
+        if (!r) return;
+        var key = pk(r.e.deck.id, r.e.card);
+        progress[key] = progress[key] === 1 ? 0 : 1;
+        saveProgress(progress);
+        progressDirty = true;
+        var isKnown = progress[key] === 1;
+        var wrap = tog.closest(".sres");
+        var dot = wrap.querySelector(".sdot");
+        dot.className = "sdot" + (isKnown ? " known" : "");
+        dot.setAttribute("aria-label", isKnown ? "marked known" : "not yet known");
+        tog.textContent = isKnown ? "Mark as not known" : "Mark as known";
+        return;
+      }
+      var row = ev.target.closest(".srow");
+      if (row) {
+        var det = row.parentNode.querySelector(".sdetail");
+        var opening = det.hasAttribute("hidden");
+        if (opening) det.removeAttribute("hidden"); else det.setAttribute("hidden", "");
+        row.setAttribute("aria-expanded", opening ? "true" : "false");
+      }
+    });
+  }
+
+  function renderHome() {
+    if (mainTab === "charts") return renderCharts();
+
+    var allCount = 0;
+    DECKS.forEach(function (d) {
+      d.cards.forEach(function (c) { if (!c.same) allCount++; });
+    });
+    var os = overallStats();
+    var pctDisplay = os.pct >= 10 ? os.pct.toFixed(1) : os.pct.toFixed(2);
+
+    var html = renderTabs();
+
+    html += '<div class="searchbox">' +
+      '<input type="search" id="searchInput" placeholder="Search Greek or English…" aria-label="Search vocabulary" autocomplete="off" autocapitalize="none" autocorrect="off" spellcheck="false" enterkeyhint="search" />' +
+      '<button class="sclear" id="searchClear" aria-label="Clear search" style="display:none">×</button>' +
+      '</div>';
+
+    html += '<div id="homeBody">';
+
+    html += '<div class="overall">' +
+      '<div class="ot">Overall progress</div>' +
+      '<div class="orow"><span class="opct">' + pctDisplay + '%</span>' +
+      '<span class="owords">of the New Testament<br>' + os.wordsKnown + ' of ' + os.totalWords + ' words memorized</span></div>' +
+      '<div class="bar"><i style="width:' + Math.min(100, os.pct) + '%"></i></div>' +
+      '</div>';
+
+    html += '<button class="deck" data-all="1">' +
+      '<div class="dt">Study everything</div>' +
+      '<div class="dm"><span>All chapters shuffled together</span><span>' + allCount + ' cards</span></div>' +
+      '</button>';
+
+    var unknownCount = os.totalWords - os.wordsKnown;
+    html += '<button class="deck" data-unknown="1"' + (unknownCount === 0 ? ' disabled style="opacity:0.55;cursor:default"' : '') + '>' +
+      '<div class="dt">Test what I don’t know yet</div>' +
+      '<div class="dm"><span>' + (unknownCount === 0 ? 'Every word is marked known' : 'Only cards not marked “Got it”, from every chapter') + '</span><span>' + unknownCount + ' cards</span></div>' +
+      '</button>';
+
+    html += '<div class="section-label">By chapter</div>';
+
+    DECKS.forEach(function (d, i) {
+      var s = deckStats(d);
+      var pct = s.total ? Math.round((s.known / s.total) * 100) : 0;
+      html += '<button class="deck" data-i="' + i + '">' +
+        '<div class="dt">' + d.name + '</div>' +
+        '<div class="dm"><span>' + s.known + ' of ' + s.total + ' known</span><span>' + s.total + ' cards</span></div>' +
+        '<div class="bar"><i style="width:' + pct + '%"></i></div>' +
+        '</button>';
+    });
+
+    html += '<div class="toolbar"><button id="resetAll">Reset all progress</button></div>';
+    html += '</div><div id="searchResults" style="display:none"></div>';
+    main.innerHTML = html;
+
+    bindTabs();
+    bindSearch();
+
+    Array.prototype.forEach.call(main.querySelectorAll(".deck"), function (el) {
+      el.addEventListener("click", function () {
+        if (el.getAttribute("data-unknown")) {
+          var unknown = [];
+          DECKS.forEach(function (d) {
+            d.cards.forEach(function (c) {
+              if (!c.same && progress[d.id + "|" + c.g] !== 1) {
+                var copy = {};
+                for (var k in c) copy[k] = c[k];
+                copy.__deck = d.id;
+                unknown.push(copy);
+              }
+            });
+          });
+          if (!unknown.length) return;
+          startDeck({ id: "__unknown", name: "Not Yet Known — Cards still to learn", cards: unknown }, false);
+        } else if (el.getAttribute("data-all")) {
+          var merged = [];
+          DECKS.forEach(function (d) {
+            d.cards.forEach(function (c) {
+              if (c.same) return;
+              var copy = {};
+              for (var k in c) copy[k] = c[k];
+              copy.__deck = d.id;
+              merged.push(copy);
+            });
+          });
+          startDeck({ id: "__all", name: "All Chapters — Full review", cards: merged }, false);
+        } else {
+          startDeck(DECKS[parseInt(el.getAttribute("data-i"), 10)], false);
+        }
+      });
+    });
+
+    var reset = document.getElementById("resetAll");
+    if (reset) reset.addEventListener("click", function () {
+      progress = {};
+      saveProgress(progress);
+      renderHome();
+    });
+  }
+
+  function renderCharts() {
+    var html = renderTabs();
+    html += '<div class="section-label">Reference paradigms</div>';
+
+    CHARTS.forEach(function (chart) {
+      html += '<div class="chart-block">' +
+        '<div class="chart-title">' + chart.title + '</div>' +
+        '<div class="chart-note">' + chart.note + '</div>' +
+        '<table class="paradigm"><thead><tr>';
+      chart.headers.forEach(function (h, hi) {
+        html += '<th' + (hi === 0 ? ' class="rowlabel"' : '') + '>' + (h === "" ? "&nbsp;" : h) + '</th>';
+      });
+      html += '</tr></thead><tbody>';
+      chart.rows.forEach(function (row) {
+        html += '<tr>';
+        row.forEach(function (cell, ci) {
+          html += ci === 0
+            ? '<td class="rowlabel">' + cell + '</td>'
+            : '<td class="greekcell">' + cell + '</td>';
+        });
+        html += '</tr>';
+      });
+      html += '</tbody></table></div>';
+    });
+
+    main.innerHTML = html;
+    bindTabs();
+  }
+
+  function keyFor(card) {
+    return card.same || ((card.__deck || deck.id) + "|" + card.g);
+  }
+
+  function renderStudy() {
+    if (idx >= queue.length) return renderDone();
+    var c = queue[idx];
+    var known = progress[keyFor(c)] === 1;
+
+    var html = '<div class="meta">' +
+      '<span>' + (idx + 1) + ' / ' + queue.length + '</span>' +
+      '<span>' + (known ? "marked known" : "") + '</span>' +
+      '</div>' +
+      '<div class="scene"><div class="card" id="card">' +
+        '<div class="face front">' +
+          '<div class="greek">' + c.g + '</div>' +
+          (c.lex ? '<div class="lexform">' + c.lex + '</div>' : '') +
+          (c.n ? '<button class="hintbtn" id="hintBtn">Hint</button>' : '') +
+          '<div class="hinttext" id="hintText" style="display:none"></div>' +
+          '<div class="tapnote">tap to reveal</div>' +
+        '</div>' +
+        '<div class="face back">' +
+          '<div class="def">' + c.d + '</div>' +
+          (c.pp ? '<div class="pp">Principal parts: ' + c.pp + '</div>' : '') +
+          (c.n ? '<div class="note">' + c.n + '</div>' : '') +
+          (c.f ? '<div class="freq">' + c.f.toLocaleString() + ' occurrences in the NT</div>' : '') +
+        '</div>' +
+      '</div></div>' +
+      '<div class="actions">' +
+        '<button class="btn bad" id="againBtn">Review again</button>' +
+        '<button class="btn good" id="gotBtn">Got it</button>' +
+      '</div>' +
+      '<div class="toolbar"><button id="shuffleBtn">Reshuffle deck</button><button id="restartBtn">Restart deck</button></div>';
+
+    main.innerHTML = html;
+
+    var cardEl = document.getElementById("card");
+    flipped = false; hintShown = false;
+    cardEl.addEventListener("click", function () {
+      flipped = !flipped;
+      cardEl.classList.toggle("flipped", flipped);
+    });
+
+    var hintBtn = document.getElementById("hintBtn");
+    if (hintBtn) {
+      hintBtn.addEventListener("click", function (e) {
+        e.stopPropagation();
+        var ht = document.getElementById("hintText");
+        if (!hintShown) {
+          ht.textContent = c.n;
+          ht.style.display = "block";
+          hintBtn.style.display = "none";
+          hintShown = true;
+        }
+      });
+    }
+
+    document.getElementById("gotBtn").addEventListener("click", function () {
+      progress[keyFor(c)] = 1;
+      saveProgress(progress);
+      sessionRight++;
+      idx++;
+      renderStudy();
+    });
+    document.getElementById("againBtn").addEventListener("click", function () {
+      progress[keyFor(c)] = 0;
+      saveProgress(progress);
+      sessionMissed.push(c);
+      idx++;
+      renderStudy();
+    });
+    document.getElementById("shuffleBtn").addEventListener("click", function () {
+      queue = shuffle(queue.slice(idx));
+      idx = 0;
+      renderStudy();
+    });
+    document.getElementById("restartBtn").addEventListener("click", function () {
+      queue = deck.cards.slice();
+      idx = 0; sessionRight = 0; sessionMissed = [];
+      renderStudy();
+    });
+  }
+
+  function renderDone() {
+    var total = queue.length;
+    var html = '<div class="done">' +
+      '<div class="big">' + sessionRight + '<span> / ' + total + '</span></div>' +
+      '<div style="color:var(--ink-soft); font-size:13px; font-style:italic;">cards marked known this round</div>';
+
+    if (sessionMissed.length) {
+      html += '<div class="missed"><div class="section-label" style="margin-top:0">Come back to these</div>';
+      sessionMissed.forEach(function (c) {
+        html += '<div class="mrow"><div class="mg">' + c.g + '</div><div class="md">' + c.d + '</div></div>';
+      });
+      html += '</div>';
+    }
+
+    html += '<div class="actions" style="margin-top:22px">' +
+      (sessionMissed.length ? '<button class="btn" id="drillBtn">Drill missed</button>' : '') +
+      '<button class="btn solid" id="againDeck">Run deck again</button>' +
+      '</div>' +
+      '<div class="toolbar"><button id="homeBtn">Back to all decks</button></div></div>';
+
+    main.innerHTML = html;
+
+    var drill = document.getElementById("drillBtn");
+    if (drill) drill.addEventListener("click", function () {
+      queue = shuffle(sessionMissed.slice());
+      idx = 0; sessionRight = 0; sessionMissed = [];
+      renderStudy();
+    });
+    document.getElementById("againDeck").addEventListener("click", function () {
+      queue = deck.cards.slice();
+      idx = 0; sessionRight = 0; sessionMissed = [];
+      renderStudy();
+    });
+    document.getElementById("homeBtn").addEventListener("click", goHome);
+  }
+
+  goHome();
+})();
+</script>
+</body>
+</html>
