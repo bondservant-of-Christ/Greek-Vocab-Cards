@@ -7,6 +7,7 @@ A mobile-friendly flashcard app for New Testament Greek vocabulary, built chapte
 - **Search**: Greek (accents optional) or English, across every chapter
 - **Overall progress**: words memorized and percent of New Testament word occurrences covered
 - **Grammar Charts** tab: stop consonants, πᾶς, first/second declension, εἰμί
+- **Tests** tab: chapter tests (Chapter 19 so far) with parsing, translation, connect, build, type-in and multiple-choice questions. Every run covers the same topics, and the question types rotate between runs
 
 ## Install it as an app
 

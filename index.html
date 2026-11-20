@@ -422,6 +422,105 @@
   }
   .mrow .mg { font-size: 18px; }
   .mrow .md { color: var(--ink-soft); text-align: right; flex: 1; }
+
+  /* ---- tests ---- */
+  .tprog { display: flex; justify-content: space-between; font-size: 12px; color: var(--ink-soft); letter-spacing: 0.04em; margin-bottom: 4px; }
+  .bar.tbar { margin: 0 0 14px; }
+  .qcard {
+    background: var(--paper-2);
+    border: 1px solid var(--edge);
+    border-radius: 4px;
+    padding: 16px 14px 14px;
+    box-shadow: 0 1px 2px var(--shadow);
+  }
+  .qtype {
+    display: flex; justify-content: space-between; gap: 4px 12px; flex-wrap: wrap;
+    font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase;
+    color: var(--ink-soft); margin-bottom: 10px;
+  }
+  .qtype span:last-child { text-transform: none; letter-spacing: 0; font-style: italic; font-size: 12px; text-align: right; }
+  .qprompt { font-size: 17px; line-height: 1.5; margin-bottom: 14px; }
+  .gk { font-size: 1.2em; }
+  .qform { font-size: 30px; text-align: center; margin: 12px 0 4px; }
+  .qprompt .qform { margin: 10px 0 6px; }
+  .opt {
+    display: block; width: 100%; text-align: left;
+    padding: 12px 14px; margin-bottom: 8px;
+    border: 1px solid var(--edge); border-radius: 3px;
+    background: var(--paper); color: var(--ink);
+    font-family: inherit; font-size: 16px; line-height: 1.4; cursor: pointer;
+  }
+  .opt:disabled { cursor: default; }
+  .opt.sel { border-color: var(--gold); box-shadow: inset 0 0 0 1px var(--gold); }
+  .opt.ok { background: var(--good-bg); border-color: var(--good); color: var(--good); }
+  .opt.no { background: var(--bad-bg); border-color: var(--bad); color: var(--bad); }
+  .opt .ck { display: inline-block; width: 1.5em; }
+  .qinput {
+    width: 100%; font-family: inherit; font-size: 20px;
+    padding: 12px 14px; border: 1px solid var(--edge); border-radius: 3px;
+    background: var(--paper); color: var(--ink);
+  }
+  .qinput:focus { outline: 2px solid var(--gold); outline-offset: 1px; }
+  .qinput.ok { background: var(--good-bg); border-color: var(--good); color: var(--good); }
+  .qinput.no { background: var(--bad-bg); border-color: var(--bad); color: var(--bad); }
+  .pgrid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 12px; }
+  .pf { display: block; font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--ink-soft); }
+  .psel {
+    display: block; width: 100%; margin-top: 4px;
+    font-family: inherit; font-size: 16px; letter-spacing: 0; text-transform: none;
+    padding: 10px 8px; border: 1px solid var(--edge); border-radius: 3px;
+    background: var(--paper); color: var(--ink);
+  }
+  .psel.ok { background: var(--good-bg); border-color: var(--good); color: var(--good); }
+  .psel.no { background: var(--bad-bg); border-color: var(--bad); color: var(--bad); }
+  .mnote { font-size: 12px; font-style: italic; color: var(--ink-soft); margin-bottom: 10px; min-height: 1em; }
+  .mcols { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+  .mcol { display: flex; flex-direction: column; gap: 8px; }
+  .mi {
+    display: flex; align-items: center; gap: 8px; text-align: left;
+    width: 100%; min-height: 48px; padding: 8px 10px;
+    border: 1px solid var(--edge); border-radius: 3px;
+    background: var(--paper); color: var(--ink);
+    font-family: inherit; font-size: 15px; line-height: 1.3; cursor: pointer;
+  }
+  .mi:disabled { cursor: default; }
+  .mi.sel { border-color: var(--gold); box-shadow: inset 0 0 0 1px var(--gold); }
+  .mi.paired { background: var(--paper-2); border-color: var(--gold); }
+  .mi.ok { background: var(--good-bg); border-color: var(--good); color: var(--good); }
+  .mi.no { background: var(--bad-bg); border-color: var(--bad); color: var(--bad); }
+  .mi .nb {
+    flex: 0 0 auto; width: 20px; height: 20px; border-radius: 50%;
+    background: var(--gold); color: var(--paper); font-size: 12px;
+    display: inline-flex; align-items: center; justify-content: center;
+  }
+  .mi .mt { flex: 1; word-break: break-word; }
+  .tileans {
+    min-height: 56px; padding: 8px; margin-bottom: 12px;
+    border: 1px dashed var(--edge); border-radius: 3px;
+    display: flex; flex-wrap: wrap; gap: 6px; align-items: center;
+  }
+  .tileans.ok { border-style: solid; border-color: var(--good); background: var(--good-bg); }
+  .tileans.no { border-style: solid; border-color: var(--bad); background: var(--bad-bg); }
+  .tilehint { font-size: 13px; font-style: italic; color: var(--ink-soft); padding-left: 4px; }
+  .tilebank { display: flex; flex-wrap: wrap; gap: 8px; }
+  .tile {
+    font-family: inherit; font-size: 18px; padding: 9px 13px;
+    border: 1px solid var(--edge); border-radius: 3px;
+    background: var(--paper); color: var(--ink); cursor: pointer;
+  }
+  .tileans .tile { border-color: var(--gold); }
+  .tile:disabled { cursor: default; }
+  .fb { margin-top: 14px; padding: 12px 14px; border-radius: 3px; font-size: 14px; line-height: 1.55; border: 1px solid; }
+  .fb.ok { background: var(--good-bg); border-color: var(--good); color: var(--good); }
+  .fb.no { background: var(--bad-bg); border-color: var(--bad); color: var(--bad); }
+  .fbans { color: var(--ink); font-size: 17px; margin: 4px 0 6px; }
+  .why { color: var(--ink-soft); font-size: 13px; margin-top: 6px; }
+  .btn:disabled { opacity: 0.45; cursor: default; }
+  .rev { background: var(--paper-2); border: 1px solid var(--edge); border-radius: 3px; padding: 12px 14px; margin-bottom: 10px; }
+  .rtopic { font-size: 12px; font-style: italic; color: var(--ink-soft); margin-bottom: 6px; }
+  .rprompt { font-size: 15px; line-height: 1.45; }
+  .rprompt .qform { font-size: 24px; margin: 6px 0; }
+  .rans { font-size: 16px; color: var(--good); margin-top: 8px; }
 </style>
 </head>
 <body>
@@ -837,6 +936,7 @@
   function goHome() {
     view = "home";
     deck = null;
+    T = null;
     backBtn.style.display = "none";
     hTitle.textContent = "Koine Vocabulary";
     hSub.textContent = "Basics of Biblical Greek";
@@ -868,11 +968,762 @@
     renderStudy();
   }
 
+  // ---------- tests: question bank ----------
+  // Each test has "slots" (topics that every run must cover). Every slot holds several
+  // question variants of different types; each run picks one variant per slot.
+  function G(s) { return '<span class="gk">' + s + '</span>'; }
+  function QF(s) { return '<div class="qform">' + s + '</div>'; }
+
+  function mc(prompt, right, wrongs, why) { return { t: "mc", prompt: prompt, right: right, wrongs: wrongs, why: why }; }
+  function multi(prompt, rights, wrongs, why) { return { t: "multi", prompt: prompt, rights: rights, wrongs: wrongs, why: why }; }
+  // opts: { ph: placeholder, show: text to display as the answer, label: question-type label }
+  function txt(prompt, answers, mode, why, opts) {
+    opts = opts || {};
+    return { t: "text", prompt: prompt, answers: answers, mode: mode, why: why, ph: opts.ph, show: opts.show || answers[0], label: opts.label };
+  }
+  function parse(form, ans, why) {
+    return { t: "parse", prompt: "Parse this form.", form: form, ans: ans, why: why };
+  }
+  function match(prompt, pairs, why) { return { t: "match", prompt: prompt, pairs: pairs, why: why }; }
+  function L(q, label) { q.label = label; return q; }
+  // answers: list of accepted tile sequences; bank: every tile offered (answer tiles plus distractors)
+  function tiles(prompt, answers, bank, why, label) {
+    return { t: "tiles", prompt: prompt, answers: answers, bank: bank, why: why, label: label };
+  }
+
+  var PARSE_FIELDS = [
+    { k: "Tense", opts: ["Present", "Future"] },
+    { k: "Voice", opts: ["Active", "Middle", "Middle/Passive"] },
+    { k: "Person", opts: ["1st", "2nd", "3rd"] },
+    { k: "Number", opts: ["Singular", "Plural"] }
+  ];
+  var FA = ["Future", "Active"], FM = ["Future", "Middle"];
+
+  var TESTS = [
+    {
+      id: "ch19",
+      name: "Chapter 19 — Future Active and Middle Indicative",
+      short: "Chapter 19 Test",
+      sub: "Future Active and Middle Indicative",
+      slots: [
+        { id: "meaning", topic: "Meaning and aspect of the future", variants: [
+          mc("How is the Greek future translated with regard to aspect?",
+            "Undefined: “I will see”",
+            ["Continuous: “I will be seeing”", "Completed: “I will have seen”", "Conditional: “I would see”"],
+            "Aspect is not significant in the future. Use the undefined form, “I will see,” not the continuous “I will be seeing.”"),
+          mc("Of the Greek tenses, which has the strongest emphasis on time?",
+            "The future",
+            ["The present", "The imperfect", "The aorist"],
+            "Of all the Greek tenses, the future has the strongest emphasis on time: it describes an action occurring in the future."),
+          mc("English forms the future with the helping verb “will.” How does Greek form it?",
+            "By adding σ (the tense formative) to the future tense stem",
+            ["By adding a helping verb to the present stem", "By adding an augment (ἐ-) to the front of the stem", "By changing only the personal endings"],
+            "Greek builds the future from the future tense stem plus the tense formative σ, then the connecting vowel and primary endings."),
+          multi("Select every true statement about the Greek future.",
+            ["It describes an action that will occur in the future.", "It is translated with the undefined form: “I will loose.”"],
+            ["It is translated with the continuous form: “I will be loosing.”", "It puts less emphasis on time than the present does."],
+            "The future describes a future action and is translated with the undefined form. It has the strongest time emphasis of any tense.")
+        ] },
+        { id: "formula", topic: "Formula for the future active and the tense formative σ", variants: [
+          tiles("Build the future active 1st plural of λύω. Tap the parts in order.",
+            [["λύ", "σ", "ο", "μεν"]], ["λύ", "σ", "ο", "μεν", "ε", "τε"],
+            "Future stem (λύ) + tense formative (σ) + connecting vowel (ο) + primary active ending (μεν) = λύσομεν."),
+          tiles("Put the parts of the future active formula in order.",
+            [["future stem", "tense formative (σ)", "connecting vowel", "primary active ending"]],
+            ["connecting vowel", "future stem", "primary active ending", "tense formative (σ)", "augment"],
+            "Future active = future tense stem + tense formative (σ) + connecting vowel (ο/ε) + primary active personal ending.", "Put in order"),
+          mc("Which formula builds the future active?",
+            "future stem + σ + connecting vowel + primary active ending",
+            ["present stem + connecting vowel + secondary active ending", "augment + future stem + σ + secondary ending", "future stem + connecting vowel + σ + primary active ending"],
+            "The σ comes between the future stem and the connecting vowel, and the endings are the primary active endings."),
+          mc("Where does the σ sit in " + G("λύσομεν") + "?",
+            "Between the stem and the connecting vowel",
+            ["After the personal ending", "In front of the stem, like an augment", "In place of the connecting vowel"],
+            "λυ + σ + ο + μεν. The σ is the tense formative and sits between the stem and the connecting vowel."),
+          tiles("Build the future active 2nd plural of ἀκούω.",
+            [["ἀκού", "σ", "ε", "τε"]], ["ἀκού", "σ", "ε", "τε", "ο", "μεν"],
+            "ἀκού + σ + ε + τε = ἀκούσετε. The 2nd plural uses the connecting vowel ε and the ending τε.")
+        ] },
+        { id: "activeparadigm", topic: "Future active paradigm and endings", variants: [
+          match("Connect each future active form of λύω with its translation.",
+            [["λύσω", "I will loose"], ["λύσεις", "You (sg) will loose"], ["λύσει", "He/she/it will loose"],
+             ["λύσομεν", "We will loose"], ["λύσετε", "You (pl) will loose"], ["λύσουσι(ν)", "They will loose"]],
+            "Same endings and connecting vowels as the present active, with σ added."),
+          txt("Give the future active 3rd plural of λύω.", ["λύσουσιν", "λύσουσι"], "greek",
+            "λυ + σ + ο + νσι contracts to λύσουσι(ν).", { show: "λύσουσι(ν)" }),
+          txt("Give the future active 2nd singular of ἀκούω.", ["ἀκούσεις"], "greek",
+            "ἀκου + σ + ε + ς = ἀκούσεις."),
+          mc("The future active uses the same personal endings as which form?",
+            "The present active (primary active endings)",
+            ["The present middle/passive", "Secondary active endings", "The future middle"],
+            "The future active uses the same primary active endings as the present active."),
+          txt("Give the future active 1st plural of πιστεύω.", ["πιστεύσομεν"], "greek",
+            "πιστευ + σ + ο + μεν = πιστεύσομεν."),
+          txt("Give the future active 2nd plural of λύω.", ["λύσετε"], "greek",
+            "λυ + σ + ε + τε = λύσετε.")
+        ] },
+        { id: "middleparadigm", topic: "Future middle paradigm and endings", variants: [
+          match("Connect each future middle form of πορεύομαι with its translation.",
+            [["πορεύσομαι", "I will go"], ["πορεύσῃ", "You (sg) will go"], ["πορεύσεται", "He/she/it will go"],
+             ["πορευσόμεθα", "We will go"], ["πορεύσεσθε", "You (pl) will go"], ["πορεύσονται", "They will go"]],
+            "Future active stem + σ + connecting vowel + primary middle/passive endings."),
+          txt("Give the future middle 1st plural of πορεύομαι.", ["πορευσόμεθα"], "greek",
+            "πορευ + σ + ο + μεθα = πορευσόμεθα."),
+          txt("Give the future middle 3rd singular of πορεύομαι.", ["πορεύσεται"], "greek",
+            "πορευ + σ + ε + ται = πορεύσεται."),
+          mc("Which personal endings does the future middle use?",
+            "Primary middle/passive endings",
+            ["Primary active endings", "Secondary middle/passive endings", "No personal endings"],
+            "The future middle uses the future active stem with primary middle/passive endings (πορεύσομαι, not πορεύσω)."),
+          mc("How are the future middle and future passive related?",
+            "The future middle is distinct from the passive (you learn the future passive in chapter 24)",
+            ["They are identical, as in the present", "There is no future middle in Greek", "The future middle uses the active endings"],
+            "In the present, middle and passive look the same. In the future the middle is distinct from both the active and the passive."),
+          tiles("Build the future middle 3rd plural of πορεύομαι.",
+            [["πορεύ", "σ", "ο", "νται"]], ["πορεύ", "σ", "ο", "νται", "ε", "ται", "σαι"],
+            "πορεύ + σ + ο + νται = πορεύσονται.")
+        ] },
+        { id: "eimi", topic: "Future of εἰμί", variants: [
+          match("Connect each future form of εἰμί with its translation.",
+            [["ἔσομαι", "I will be"], ["ἔσῃ", "You (sg) will be"], ["ἔσται", "He/she/it will be"],
+             ["ἐσόμεθα", "We will be"], ["ἔσεσθε", "You (pl) will be"], ["ἔσονται", "They will be"]],
+            "The future of εἰμί (root *εσ) looks like a future middle."),
+          txt("Give the future of εἰμί, 3rd singular (“he/she/it will be”).", ["ἔσται"], "greek",
+            "ἔσται. No connecting vowel is visible."),
+          txt("Give the future of εἰμί, 3rd plural (“they will be”).", ["ἔσονται"], "greek",
+            "ἔσονται."),
+          mc("The future of εἰμί is formed in which voice?",
+            "Middle",
+            ["Active", "Passive", "It has no future"],
+            "The future of εἰμί is middle: ἔσομαι, ἔσῃ, ἔσται, ἐσόμεθα, ἔσεσθε, ἔσονται."),
+          mc("Which form means “You (sg) will be”?",
+            "ἔσῃ",
+            ["ἔσται", "ἔσεσθε", "ἔσομαι"],
+            "ἔσῃ is 2nd singular. ἔσεσθε is 2nd plural.")
+        ] },
+        { id: "pattern1", topic: "Pattern 1 verbs (root = present stem = future stem)", variants: [
+          multi("Select the three categories of pattern 1 verbs.",
+            ["Roots ending in ι or υ", "Contract verbs", "Roots ending in a stop"],
+            ["Verbs that use a different root in the future", "Middle-only verbs", "Verbs that begin with a vowel"],
+            "Pattern 1: roots ending in ι/υ (ἀκούω), contract verbs (ποιέω), and roots ending in a stop (βλέπω)."),
+          match("Connect each root with its future active 1st singular.",
+            [["*ἀκου", "ἀκούσω"], ["*ποιε", "ποιήσω"], ["*βλεπ", "βλέψω"], ["*λυ", "λύσω"]],
+            "Pattern 1 roots move into the future stem unchanged; σ is then added."),
+          mc("For a pattern 1 verb, how do the root, present stem, and future stem relate?",
+            "They are identical",
+            ["The root changes to form the present stem, then changes again for the future", "The future stem always uses a different root", "They are identical only for contract verbs"],
+            "In pattern 1, the root is used unaltered, so the root, present tense stem, and future tense stem are identical."),
+          mc("Which of these is NOT a category of pattern 1 verb?",
+            "Verbs that use different roots for the present and future (such as ἔρχομαι)",
+            ["Roots ending in ι or υ", "Contract verbs", "Roots ending in a stop"],
+            "Verbs with different roots are pattern 2.")
+        ] },
+        { id: "contract", topic: "Contract verbs in the future", variants: [
+          mc("What happens to the contract vowel of ποιέω in the future?",
+            "It lengthens (ε → η) before the σ",
+            ["It contracts with the connecting vowel, as in the present", "It drops out", "It becomes ω"],
+            "In the future the contract vowel meets σ instead of another vowel, so it lengthens: ποιήσω."),
+          mc("What do α, ε, and ο lengthen to before a tense formative?",
+            "α → η, ε → η, ο → ω",
+            ["α → ω, ε → η, ο → ου", "α → ᾳ, ε → ει, ο → οι", "They do not lengthen; they drop out"],
+            "α and ε lengthen to η; ο lengthens to ω."),
+          match("Connect each present form with its future active 1st singular.",
+            [["ἀγαπάω", "ἀγαπήσω"], ["ποιέω", "ποιήσω"], ["πληρόω", "πληρώσω"], ["τηρέω", "τηρήσω"]],
+            "α and ε → η; ο → ω."),
+          txt("Give the future active 1st singular of πληρόω.", ["πληρώσω"], "greek",
+            "*πληρο + σ + ω → πληρώσω (ο lengthens to ω)."),
+          txt("Give the future active 1st singular of ἀγαπάω.", ["ἀγαπήσω"], "greek",
+            "*ἀγαπα + σ + ω → ἀγαπήσω (α lengthens to η)."),
+          txt("Give the future middle 1st singular of δύναμαι.", ["δυνήσομαι"], "greek",
+            "The α of δύναμαι lengthens to η, just like a contract verb: δυνήσομαι."),
+          mc("Why does a contract verb not contract in the future?",
+            "Its contract vowel is followed by σ, not by another vowel, so there is nothing to contract with",
+            ["Contract verbs are not used in the future", "The σ drops out", "Only the personal ending changes"],
+            "Contraction needs two vowels in contact. In the future the σ separates them, so the contract vowel lengthens instead."),
+          mc("Which contract verb does NOT lengthen its vowel in the future, and why?",
+            "καλέω, because its root used to end in a digamma",
+            ["ποιέω, because ε never lengthens", "πληρόω, because ο cannot lengthen", "ἀγαπάω, because its root ends in a stop"],
+            "The lost digamma in *καλεϟ still prevents the ε from lengthening: the future is καλέσω."),
+          mc("Where does the accent fall in " + G("ποιήσω") + "?",
+            "On the lengthened contract vowel (η)",
+            ["On the ending (ω)", "On the first syllable", "On the σ"],
+            "The accent is always over the lengthened contract vowel.")
+        ] },
+        { id: "stops", topic: "Square of Stops", variants: [
+          match("Connect each type of stop with what it becomes when joined with σ.",
+            [["Labial (π β φ)", "ψ"], ["Velar (κ γ χ)", "ξ"], ["Dental (τ δ θ)", "σ (the dental drops out)"]],
+            "Labial + σ → ψ; velar + σ → ξ; dental + σ → σ."),
+          txt("Give the future active 1st singular of βλέπω.", ["βλέψω"], "greek",
+            "*βλεπ + σω: labial π + σ → ψ, so βλέψω."),
+          txt("Give the future active 1st singular of συνάγω.", ["συνάξω"], "greek",
+            "*ἀγ + σω: velar γ + σ → ξ, so συνάξω."),
+          txt("Give the future active 1st singular of ἔχω.", ["ἕξω"], "greek",
+            "*σεχ + σω: velar χ + σ → ξ, so ἕξω. Notice the rough breathing in the future."),
+          mc("*βαπτιδ + σω becomes…",
+            "βαπτίσω",
+            ["βαπτίψω", "βαπτίξω", "βαπτίδσω"],
+            "A dental (δ) joined with σ drops out, leaving σ."),
+          mc("*γραφ + σω becomes…",
+            "γράψω",
+            ["γράξω", "γράσω", "γράφσω"],
+            "A labial (φ) joined with σ becomes ψ."),
+          mc("*διωκ + σω becomes…",
+            "διώξω",
+            ["διώψω", "διώσω", "διώκσω"],
+            "A velar (κ) joined with σ becomes ξ."),
+          mc("You see ψ or ξ just before the personal ending of a verb (such as βλέψω or διώξω). What can you safely assume?",
+            "A σ is hidden in there: a stop joined with the future σ",
+            ["It is a contract verb", "It is a present tense", "It is a middle-only verb"],
+            "Whenever you see ψ or ξ before the personal ending, it is relatively safe to assume there is a σ in there.")
+        ] },
+        { id: "lexicon", topic: "Middle-only verbs and reading the lexicon", variants: [
+          mc("A lexicon lists: πορεύομαι, πορεύσομαι, –, –, πεπόρευμαι, ἐπορεύθην. What does the second form tell you?",
+            "The verb is middle-only in the future (it ends in -ομαι)",
+            ["The verb is active in the future", "The future does not occur in the New Testament", "The future is passive"],
+            "If the second tense form ends in -ομαι, the verb is middle-only in the future."),
+          mc("In λύω, (ἔλυον), λύσω, ἔλυσα, λέλυκα, λέλυμαι, ἐλύθην, which form is the future active?",
+            "λύσω",
+            ["ἔλυον", "ἔλυσα", "ἐλύθην"],
+            "The future active is the form right after the imperfect in parentheses."),
+          mc("What does a dash (–) in a tense listing mean?",
+            "That tense and voice does not occur in the New Testament",
+            ["That the form is irregular", "That the form is the same as the present", "That the verb is middle-only"],
+            "A dash means that particular tense/voice does not occur in the New Testament."),
+          mc("If a pattern 1 verb is middle-only in the present, what is it most likely in the future?",
+            "Middle-only",
+            ["Active", "Passive", "Either, with no pattern"],
+            "If the present is middle-only, the future most likely is too, and vice versa."),
+          txt("From the entry ζάω, (ἔζων), ζήσω, ἔζησα, –, –, – , give the future active 1st singular.", ["ζήσω"], "greek",
+            "The future is the form after the parenthesized imperfect: ζήσω."),
+          txt("From the entry γεννάω, γεννήσω, ἐγέννησα, γεγέννηκα, γεγέννημαι, ἐγεννήθην, give the future active 1st singular.", ["γεννήσω"], "greek",
+            "The first form after the present is the future active.")
+        ] },
+        { id: "parse1", topic: "Parsing: future active", variants: [
+          parse("βλέψω", FA.concat(["1st", "Singular"]), "βλέψ-ω: the ψ hides the σ (π + σ), and -ω is the 1st singular ending."),
+          parse("ἀκούσεις", FA.concat(["2nd", "Singular"]), "σ is the future formative; -εις is 2nd singular."),
+          parse("λύσομεν", FA.concat(["1st", "Plural"]), "σ + ο + μεν: future active 1st plural."),
+          parse("πιστεύσετε", FA.concat(["2nd", "Plural"]), "σ + ε + τε: future active 2nd plural."),
+          parse("ἀκούσουσι(ν)", FA.concat(["3rd", "Plural"]), "σ + ου + σι(ν): future active 3rd plural."),
+          parse("ἕξει", FA.concat(["3rd", "Singular"]), "ἔχω: *σεχ + σ → ξ. -ει is 3rd singular."),
+          L(mc("Which form is the future active 2nd plural?",
+            "πιστεύσετε",
+            ["πιστεύσεται", "πιστεύσομεν", "πιστεύσουσι(ν)"],
+            "σ + ε + τε is the future active 2nd plural. -εται is future middle 3rd singular."), "Parsing"),
+          L(match("Connect each form with its parsing.",
+            [["βλέψω", "Future active 1st sg"], ["ἀκούσεις", "Future active 2nd sg"], ["λύσομεν", "Future active 1st pl"], ["ἀκούσουσι(ν)", "Future active 3rd pl"]],
+            "Find the σ (or the ψ/ξ that hides it), then read the connecting vowel and ending."), "Parsing"),
+          L(mc("Parse " + G("ἕξει") + ".",
+            "Future active 3rd singular",
+            ["Present active 3rd singular", "Future middle 3rd singular", "Future active 3rd plural"],
+            "ἔχω: *σεχ + σ → ξ, with the rough breathing. -ει is 3rd singular active."), "Parsing")
+        ] },
+        { id: "parse2", topic: "Parsing: future middle and εἰμί", variants: [
+          parse("πορεύσεται", FM.concat(["3rd", "Singular"]), "σ + ε + ται: future middle 3rd singular."),
+          parse("πορεύσομαι", FM.concat(["1st", "Singular"]), "σ + ο + μαι: future middle 1st singular."),
+          parse("πορευσόμεθα", FM.concat(["1st", "Plural"]), "σ + ο + μεθα: future middle 1st plural."),
+          parse("πορεύσεσθε", FM.concat(["2nd", "Plural"]), "σ + ε + σθε: future middle 2nd plural."),
+          parse("πορεύσονται", FM.concat(["3rd", "Plural"]), "σ + ο + νται: future middle 3rd plural."),
+          parse("πορεύσῃ", FM.concat(["2nd", "Singular"]), "σ + ε + σαι contracts to -σῃ: future middle 2nd singular."),
+          parse("ἔσται", FM.concat(["3rd", "Singular"]), "The future of εἰμί is middle: ἔσται is the 3rd singular."),
+          L(match("Connect each form with its parsing.",
+            [["πορεύσομαι", "Future middle 1st sg"], ["πορεύσεται", "Future middle 3rd sg"], ["πορεύσεσθε", "Future middle 2nd pl"], ["πορεύσονται", "Future middle 3rd pl"]],
+            "σ + connecting vowel + primary middle/passive ending."), "Parsing"),
+          L(mc("Which form is the future middle 2nd singular?",
+            "πορεύσῃ",
+            ["πορεύσεις", "πορεύσεται", "πορεύσομαι"],
+            "πορεύσεις is the future active 2nd singular, but πορεύομαι is middle-only. The middle 2nd singular is πορεύσῃ."), "Parsing"),
+          L(mc("Parse " + G("ἔσονται") + ".",
+            "Future middle 3rd plural (the future of εἰμί)",
+            ["Future active 3rd plural", "Present middle/passive 3rd plural", "Future passive 3rd plural"],
+            "The future of εἰμί is middle in form: ἔσονται, “they will be.”"), "Parsing")
+        ] },
+        { id: "parse3", topic: "Parsing and lexical forms: contract verbs, stops, and the present for contrast", variants: [
+          parse("ἀγαπήσετε", FA.concat(["2nd", "Plural"]), "The α lengthened to η before σ: future active 2nd plural."),
+          parse("ποιήσουσι(ν)", FA.concat(["3rd", "Plural"]), "The ε lengthened to η: future active 3rd plural."),
+          parse("πληρώσω", FA.concat(["1st", "Singular"]), "The ο lengthened to ω: future active 1st singular."),
+          parse("τηρήσεις", FA.concat(["2nd", "Singular"]), "ε → η before σ: future active 2nd singular."),
+          parse("λύονται", ["Present", "Middle/Passive", "3rd", "Plural"], "No σ, so this is the present: present middle/passive 3rd plural."),
+          parse("λύομεν", ["Present", "Active", "1st", "Plural"], "No σ, so this is the present: present active 1st plural."),
+          txt("What is the lexical form of " + G("ποιήσετε") + "?", ["ποιέω"], "greek",
+            "The ε lengthened to η, so the verb is ποιέω.", { label: "Lexical form" }),
+          txt("What is the lexical form of " + G("ἀγαπήσω") + "?", ["ἀγαπάω"], "greek",
+            "The η is a lengthened α, so the verb is ἀγαπάω.", { label: "Lexical form" }),
+          txt("What is the lexical form of " + G("πληρώσεις") + "?", ["πληρόω"], "greek",
+            "The ω is a lengthened ο, so the verb is πληρόω.", { label: "Lexical form" }),
+          txt("What is the lexical form of " + G("βλέψομεν") + "?", ["βλέπω"], "greek",
+            "ψ = π + σ, so the stem is βλεπ-: βλέπω.", { label: "Lexical form" })
+        ] },
+        { id: "greek2en", topic: "Translation: Greek to English", variants: [
+          txt("Translate: " + QF("ἀκούσομεν τὸν λόγον."), ["we will hear the word", "we will listen to the word"], "en",
+            "ἀκούσομεν is future active 1st plural: “we will hear.”", { ph: "Type the English…", label: "Translation" }),
+          tiles("Translate: " + QF("ὁ βασιλεὺς πορεύσεται εἰς τὴν πόλιν.") + "Tap the English words in order.",
+            [["The", "king", "will", "go", "into", "the", "city"], ["The", "king", "will", "go", "to", "the", "city"]],
+            ["The", "king", "will", "go", "into", "to", "the", "the", "city", "went", "goes", "is going"],
+            "πορεύσεται is future middle 3rd singular: “he will go.”", "Translation"),
+          mc("Translate: " + QF("ζήσουσιν"),
+            "They will live",
+            ["They live", "We will live", "They were living"],
+            "ζάω: ζήσω is the future. The ending -ουσιν is 3rd plural."),
+          txt("Translate: " + QF("ἀγαπήσεις κύριον τὸν θεόν σου."), ["you will love the lord your god", "you will love your lord god"], "en",
+            "Future active 2nd singular. This is the imperatival use of the future, so “You shall love the Lord your God” is also right.", { ph: "Type the English…", label: "Translation" }),
+          mc("Translate: " + QF("προσκυνήσετε τῷ κυρίῳ."),
+            "You (pl) will worship the Lord",
+            ["You (pl) worship the Lord", "We will worship the Lord", "He will worship the Lord"],
+            "προσκυνήσετε is future active 2nd plural. προσκυνέω takes a direct object in the dative or accusative."),
+          txt("Translate: " + QF("ὁ κύριος ἔσται μετὰ τοῦ ἀδελφοῦ."), ["the lord will be with the brother"], "en",
+            "ἔσται is the future of εἰμί, 3rd singular: “he/it will be.”", { ph: "Type the English…", label: "Translation" }),
+          txt("Translate: " + QF("οἱ ἄνθρωποι πιστεύσουσιν."), ["the people will believe", "the men will believe", "the humans will believe"], "en",
+            "πιστεύσουσιν is future active 3rd plural: “they will believe.”", { ph: "Type the English…", label: "Translation" })
+        ] },
+        { id: "en2greek", topic: "Translation: English to Greek", variants: [
+          txt("Write in Greek: “They will do.”", ["ποιήσουσιν", "ποιήσουσι"], "greek",
+            "ποιέω → ποιήσω (ε lengthens to η). 3rd plural: ποιήσουσι(ν).", { show: "ποιήσουσι(ν)", label: "Write the Greek" }),
+          txt("Write in Greek: “I will gather.”", ["συνάξω"], "greek",
+            "συνάγω: the velar γ + σ → ξ, so συνάξω.", { label: "Write the Greek" }),
+          tiles("Build the Greek for “We will love.”",
+            [["ἀγαπή", "σ", "ο", "μεν"]], ["ἀγαπή", "ἀγαπά", "σ", "ο", "μεν", "ε", "τε"],
+            "ἀγαπάω lengthens α to η before σ: ἀγαπήσομεν.", "Build it"),
+          mc("Which Greek form means “He will worship”?",
+            "προσκυνήσει",
+            ["προσκυνεῖ", "προσκυνήσουσι(ν)", "προσκυνήσομαι"],
+            "προσκυνέω → προσκυνήσω; 3rd singular active: προσκυνήσει."),
+          txt("Write in Greek: “You (pl) will see.”", ["βλέψετε"], "greek",
+            "βλέπω: π + σ → ψ. 2nd plural: βλέψετε.", { label: "Write the Greek" }),
+          txt("Write in Greek: “We will live.”", ["ζήσομεν"], "greek",
+            "ζάω → ζήσω; 1st plural: ζήσομεν.", { label: "Write the Greek" }),
+          txt("Write in Greek: “He will go.”", ["πορεύσεται"], "greek",
+            "πορεύομαι is middle-only, so the future is middle: πορεύσεται.", { label: "Write the Greek" }),
+          tiles("Build the Greek for “We will believe.”",
+            [["πιστεύ", "σ", "ο", "μεν"]], ["πιστεύ", "σ", "ο", "μεν", "ε", "τε", "ται"],
+            "πιστεύ + σ + ο + μεν = πιστεύσομεν.", "Build it")
+        ] },
+        { id: "overview", topic: "Overview of the tenses and the master verb chart", variants: [
+          match("Connect each form of ἀγαπάω with its tense and voice.",
+            [["ἀγαπάω", "present"], ["ἠγάπων", "imperfect"], ["ἀγαπήσω", "future active"], ["ἠγάπησα", "aorist active"], ["ἠγαπήθην", "aorist passive"]],
+            "Greek has five tenses and seven distinct forms. You only need to recognize these for now."),
+          mc("How many tenses does Greek have, and how many distinct verb forms?",
+            "Five tenses; seven forms",
+            ["Four tenses; six forms", "Five tenses; five forms", "Seven tenses; seven forms"],
+            "Present, imperfect, future, aorist, and perfect, with seven forms because of the voice combinations."),
+          match("Connect each row of the master verb chart with its 1st singular paradigm form.",
+            [["Present active", "λύω"], ["Present middle/passive", "λύομαι"], ["Future active", "λύσω"], ["Future middle", "πορεύσομαι"]],
+            "Master Indicative Verb Chart."),
+          mc("Which tenses in the master verb chart have the tense formative σ?",
+            "Future active and future middle",
+            ["All four rows", "Present active and present middle/passive", "Future active only"],
+            "Only the future rows have the σ tense formative."),
+          mc("Which form of ἀγαπάω means “I will love”?",
+            "ἀγαπήσω",
+            ["ἠγάπων", "ἠγάπησα", "ἀγαπάω"],
+            "ἀγαπήσω is the future active. ἠγάπων is the imperfect and ἠγάπησα is the aorist.")
+        ] },
+        { id: "uses", topic: "Uses of the future", variants: [
+          match("Connect each use of the future with its description.",
+            [["Predictive", "Something will happen in the future"], ["Imperatival", "It expresses a command"], ["Gnomic", "A generic event that does occur"]],
+            "Predictive (Phil 1:6), imperatival (Matt 22:37), gnomic (Rom 5:7)."),
+          mc(G("ἀγαπήσεις κύριον τὸν θεόν σου") + " (Matt 22:37) is “You shall love the Lord your God.” Which use is this?",
+            "Imperatival (a command)",
+            ["Predictive", "Gnomic", "Aspectual"],
+            "The future can express a command, as in English “You will be there!”"),
+          mc(G("ἀποθανεῖται") + " in Rom 5:7, “For rarely will one die for an upright person,” states what…",
+            "A generic event that does occur (gnomic)",
+            ["A command", "A particular future event (predictive)", "A past event"],
+            "The gnomic future says such events do occur; no particular occurrence is in mind."),
+          mc(G("ἐπιτελέσει") + " in Phil 1:6, “He who began a good work in you will bring it to completion,” is…",
+            "Predictive: something that will happen",
+            ["Imperatival", "Gnomic", "A present tense"],
+            "The basic use of the future is predictive."),
+          mc("“Thou shalt not kill” is stated in the Greek future. Why is it not a prediction?",
+            "The future is also used to express a command (imperatival)",
+            ["It is a gnomic future", "The verb is really a present", "Greek has no way to express commands"],
+            "Under the influence of a Hebrew construction, the Greek future can give a command.")
+        ] }
+      ]
+    }
+  ];
+
+  // ---------- tests: engine ----------
+  var TKEY = "koine.tests.v1";
+  function loadTests() {
+    try { var r = localStorage.getItem(TKEY); return r ? JSON.parse(r) : {}; } catch (e) { return {}; }
+  }
+  function saveTests(t) {
+    try { localStorage.setItem(TKEY, JSON.stringify(t)); } catch (e) {}
+  }
+  var testStore = loadTests();
+  var T = null; // the test run in progress
+
+  var TYPE_LABEL = {
+    mc: "Multiple choice", multi: "Select all that apply", text: "Type your answer",
+    parse: "Parsing", match: "Connect", tiles: "Build it"
+  };
+
+  // English answers: ignore case, punctuation, articles, (sg)/(pl) notes, shall/will, he/she/it
+  function normEn(s) {
+    return String(s || "").toLowerCase()
+      .replace(/\([^)]*\)/g, " ")
+      .replace(/[’']ll\b/g, " will")
+      .replace(/[^a-z\s]/g, " ")
+      .replace(/\bshall\b/g, "will")
+      .replace(/\b(the|a|an)\b/g, " ")
+      .replace(/\b(he|she|it)\b(\s+(he|she|it)\b)*/g, "he")
+      .replace(/\s+/g, " ").trim();
+  }
+  // Greek answers: accents, breathings and capitals do not matter
+  function normGk(s) {
+    return norm(s).replace(/[^α-ωa-z]/g, "");
+  }
+
+  function inst(v, slot) {
+    var q = {};
+    for (var k in v) q[k] = v[k];
+    q.slot = slot.topic;
+    if (v.t === "mc") q.options = shuffle([v.right].concat(v.wrongs));
+    if (v.t === "multi") q.options = shuffle(v.rights.concat(v.wrongs));
+    if (v.t === "match") {
+      var order = [];
+      for (var i = 0; i < v.pairs.length; i++) order.push(i);
+      q.rightOrder = shuffle(order);
+    }
+    if (v.t === "tiles") q.bankOrder = shuffle(v.bank.map(function (b, i) { return i; }));
+    return q;
+  }
+
+  // One question per slot. Within a slot every variant is used once before any repeats.
+  function pickRun(test) {
+    var st = testStore[test.id];
+    if (!st) st = testStore[test.id] = { runs: 0, best: null, last: null, seen: {} };
+    if (!st.seen) st.seen = {};
+    var qs = [];
+    test.slots.forEach(function (slot) {
+      var n = slot.variants.length;
+      var seen = (st.seen[slot.id] || []).filter(function (x) { return x < n; });
+      var avail = [], i;
+      for (i = 0; i < n; i++) if (seen.indexOf(i) < 0) avail.push(i);
+      if (!avail.length) {
+        var lastUsed = seen.length ? seen[seen.length - 1] : -1;
+        seen = [];
+        for (i = 0; i < n; i++) if (i !== lastUsed || n === 1) avail.push(i);
+      }
+      var pick = avail[Math.floor(Math.random() * avail.length)];
+      seen.push(pick);
+      st.seen[slot.id] = seen;
+      qs.push(inst(slot.variants[pick], slot));
+    });
+    saveTests(testStore);
+    return qs;
+  }
+
+  function newUi(q) {
+    var u = { done: false, ok: false };
+    if (q.t === "mc") u.sel = null;
+    if (q.t === "multi") u.sel = [];
+    if (q.t === "text") u.val = "";
+    if (q.t === "parse") u.vals = [null, null, null, null];
+    if (q.t === "match") { u.pairs = {}; u.selL = null; }
+    if (q.t === "tiles") u.seq = [];
+    return u;
+  }
+
+  function startTest(ti) {
+    var test = TESTS[ti];
+    mainTab = "tests";
+    T = { ti: ti, test: test, qs: pickRun(test), i: 0, score: 0, results: [] };
+    T.ui = newUi(T.qs[0]);
+    view = "test";
+    backBtn.style.display = "block";
+    hTitle.textContent = test.short;
+    hSub.textContent = test.sub;
+    renderTest();
+    window.scrollTo(0, 0);
+  }
+
+  function tileJoin(q) {
+    return q.label === "Translation" ? " " : (q.label === "Put in order" ? " → " : "");
+  }
+
+  function canCheck(q, ui) {
+    if (q.t === "mc") return ui.sel !== null;
+    if (q.t === "multi") return ui.sel.length > 0;
+    if (q.t === "text") return ui.val.trim() !== "";
+    if (q.t === "parse") return ui.vals.every(function (v) { return v; });
+    if (q.t === "match") return Object.keys(ui.pairs).length === q.pairs.length;
+    if (q.t === "tiles") return ui.seq.length > 0;
+    return false;
+  }
+
+  function grade(q, ui) {
+    if (q.t === "mc") return ui.sel === q.right;
+    if (q.t === "multi") {
+      return ui.sel.length === q.rights.length && q.rights.every(function (r) { return ui.sel.indexOf(r) >= 0; });
+    }
+    if (q.t === "text") {
+      var f = q.mode === "en" ? normEn : normGk;
+      var g = f(ui.val);
+      return g !== "" && q.answers.some(function (a) { return f(a) === g; });
+    }
+    if (q.t === "parse") return q.ans.every(function (a, i) { return ui.vals[i] === a; });
+    if (q.t === "match") {
+      return q.pairs.every(function (p, i) { return q.rightOrder[ui.pairs[i]] === i; });
+    }
+    if (q.t === "tiles") {
+      var got = ui.seq.map(function (b) { return q.bank[b]; });
+      return q.answers.some(function (a) {
+        return a.length === got.length && a.every(function (x, i) { return x === got[i]; });
+      });
+    }
+    return false;
+  }
+
+  function answerText(q) {
+    if (q.t === "mc") return q.right;
+    if (q.t === "multi") return q.rights.join("<br>");
+    if (q.t === "text") return q.mode === "greek" ? '<span class="gk">' + q.show + '</span>' : q.show;
+    if (q.t === "parse") return q.ans.join(" · ");
+    if (q.t === "match") return q.pairs.map(function (p) { return p[0] + " → " + p[1]; }).join("<br>");
+    if (q.t === "tiles") return q.answers[0].join(tileJoin(q));
+    return "";
+  }
+
+  function qBody(q, ui) {
+    var done = ui.done, h = "";
+    if (q.t === "mc") {
+      q.options.forEach(function (o, i) {
+        var cls = "opt";
+        if (done) cls += o === q.right ? " ok" : (ui.sel === o ? " no" : "");
+        else if (ui.sel === o) cls += " sel";
+        h += '<button class="' + cls + '" data-o="' + i + '"' + (done ? " disabled" : "") + '>' + o + '</button>';
+      });
+    } else if (q.t === "multi") {
+      q.options.forEach(function (o, i) {
+        var on = ui.sel.indexOf(o) >= 0, isRight = q.rights.indexOf(o) >= 0;
+        var cls = "opt";
+        if (done) cls += isRight ? " ok" : (on ? " no" : "");
+        else if (on) cls += " sel";
+        h += '<button class="' + cls + '" data-o="' + i + '"' + (done ? " disabled" : "") + '><span class="ck">' + (on ? "☑" : "☐") + '</span>' + o + '</button>';
+      });
+    } else if (q.t === "text") {
+      var ph = q.ph || (q.mode === "greek" ? "Type in Greek (accents optional)" : "Type your answer");
+      h += '<input type="text" class="qinput' + (done ? (ui.ok ? " ok" : " no") : "") + '" id="qin" value="' + esc(ui.val) + '" placeholder="' + esc(ph) + '"' +
+        (done ? " readonly" : "") + ' autocomplete="off" autocapitalize="none" autocorrect="off" spellcheck="false" enterkeyhint="done" />';
+    } else if (q.t === "parse") {
+      h += QF(q.form) + '<div class="pgrid">';
+      PARSE_FIELDS.forEach(function (f, fi) {
+        var cls = "";
+        if (done) cls = ui.vals[fi] === q.ans[fi] ? " ok" : " no";
+        h += '<label class="pf"><span>' + f.k + '</span><select data-f="' + fi + '" class="psel' + cls + '"' + (done ? " disabled" : "") + '>' +
+          '<option value="">—</option>';
+        f.opts.forEach(function (o) {
+          h += '<option value="' + o + '"' + (ui.vals[fi] === o ? " selected" : "") + '>' + o + '</option>';
+        });
+        h += '</select></label>';
+      });
+      h += '</div>';
+    } else if (q.t === "match") {
+      var pairedRight = {};
+      Object.keys(ui.pairs).forEach(function (k) { pairedRight[ui.pairs[k]] = parseInt(k, 10); });
+      h += '<div class="mnote">' + (done ? "" : "Tap an item on the left, then its match on the right. Tap a connected item to undo.") + '</div>';
+      h += '<div class="mcols"><div class="mcol">';
+      q.pairs.forEach(function (p, i) {
+        var paired = ui.pairs[i] !== undefined;
+        var cls = "mi" + (ui.selL === i ? " sel" : "") + (paired ? " paired" : "");
+        if (done) cls += q.rightOrder[ui.pairs[i]] === i ? " ok" : " no";
+        h += '<button class="' + cls + '" data-l="' + i + '"' + (done ? " disabled" : "") + '><span class="nb">' + (i + 1) + '</span><span class="mt">' + p[0] + '</span></button>';
+      });
+      h += '</div><div class="mcol">';
+      q.rightOrder.forEach(function (orig, pos) {
+        var k = pairedRight[pos];
+        var cls = "mi" + (k !== undefined ? " paired" : "");
+        if (done && k !== undefined) cls += k === orig ? " ok" : " no";
+        h += '<button class="' + cls + '" data-r="' + pos + '"' + (done ? " disabled" : "") + '>' +
+          (k !== undefined ? '<span class="nb">' + (k + 1) + '</span>' : '') + '<span class="mt">' + q.pairs[orig][1] + '</span></button>';
+      });
+      h += '</div></div>';
+    } else if (q.t === "tiles") {
+      h += '<div class="tileans' + (done ? (ui.ok ? " ok" : " no") : "") + '">';
+      if (!ui.seq.length) h += '<span class="tilehint">Tap the pieces below</span>';
+      ui.seq.forEach(function (b, si) {
+        h += '<button class="tile" data-s="' + si + '"' + (done ? " disabled" : "") + '>' + esc(q.bank[b]) + '</button>';
+      });
+      h += '</div><div class="tilebank">';
+      q.bankOrder.forEach(function (b) {
+        if (ui.seq.indexOf(b) >= 0) return;
+        h += '<button class="tile" data-b="' + b + '"' + (done ? " disabled" : "") + '>' + esc(q.bank[b]) + '</button>';
+      });
+      h += '</div>';
+    }
+    return h;
+  }
+
+  function feedbackHtml(q, ui) {
+    var h = '<div class="fb ' + (ui.ok ? "ok" : "no") + '">';
+    if (ui.ok) h += '<b>Correct.</b>';
+    else h += '<b>Not quite.</b> The answer: <div class="fbans">' + answerText(q) + '</div>';
+    if (q.why) h += '<div class="why">' + q.why + '</div>';
+    return h + '</div>';
+  }
+
+  function renderTest() {
+    var q = T.qs[T.i], ui = T.ui, done = ui.done;
+    var label = q.label || TYPE_LABEL[q.t];
+    var html = '<div class="tprog"><span>Question ' + (T.i + 1) + ' of ' + T.qs.length + '</span><span>' + T.score + ' correct</span></div>' +
+      '<div class="bar tbar"><i style="width:' + Math.round((T.i / T.qs.length) * 100) + '%"></i></div>';
+    html += '<div class="qcard"><div class="qtype"><span>' + label + '</span><span>' + q.slot + '</span></div>' +
+      '<div class="qprompt">' + q.prompt + '</div>' + qBody(q, ui) + '</div>';
+    if (done) html += feedbackHtml(q, ui);
+    html += '<div class="actions" style="margin-top:14px">' +
+      (done
+        ? '<button class="btn solid" id="nextBtn">' + (T.i + 1 >= T.qs.length ? "See results" : "Next question") + '</button>'
+        : '<button class="btn solid" id="checkBtn"' + (canCheck(q, ui) ? "" : " disabled") + '>Check answer</button>') +
+      '</div>';
+    main.innerHTML = html;
+    bindQ(q, ui);
+  }
+
+  function bindQ(q, ui) {
+    var checkBtn = document.getElementById("checkBtn");
+    function refreshCheck() { if (checkBtn) checkBtn.disabled = !canCheck(q, ui); }
+    function doCheck() {
+      if (ui.done || !canCheck(q, ui)) return;
+      ui.ok = grade(q, ui);
+      ui.done = true;
+      if (ui.ok) T.score++;
+      T.results.push({ q: q, ok: ui.ok });
+      renderTest();
+    }
+    function each(sel, fn) {
+      Array.prototype.forEach.call(main.querySelectorAll(sel), fn);
+    }
+
+    if (checkBtn) checkBtn.addEventListener("click", doCheck);
+    var nextBtn = document.getElementById("nextBtn");
+    if (nextBtn) nextBtn.addEventListener("click", function () {
+      T.i++;
+      if (T.i >= T.qs.length) { renderTestDone(); }
+      else { T.ui = newUi(T.qs[T.i]); renderTest(); }
+      window.scrollTo(0, 0);
+    });
+    if (ui.done) return;
+
+    if (q.t === "mc") {
+      each(".opt", function (el) {
+        el.addEventListener("click", function () {
+          ui.sel = q.options[parseInt(el.getAttribute("data-o"), 10)];
+          renderTest();
+        });
+      });
+    } else if (q.t === "multi") {
+      each(".opt", function (el) {
+        el.addEventListener("click", function () {
+          var o = q.options[parseInt(el.getAttribute("data-o"), 10)];
+          var at = ui.sel.indexOf(o);
+          if (at >= 0) ui.sel.splice(at, 1); else ui.sel.push(o);
+          renderTest();
+        });
+      });
+    } else if (q.t === "text") {
+      var inp = document.getElementById("qin");
+      inp.addEventListener("input", function () { ui.val = inp.value; refreshCheck(); });
+      inp.addEventListener("keydown", function (e) { if (e.key === "Enter") { e.preventDefault(); doCheck(); } });
+    } else if (q.t === "parse") {
+      each(".psel", function (el) {
+        el.addEventListener("change", function () {
+          ui.vals[parseInt(el.getAttribute("data-f"), 10)] = el.value || null;
+          refreshCheck();
+        });
+      });
+    } else if (q.t === "match") {
+      each("[data-l]", function (el) {
+        el.addEventListener("click", function () {
+          var i = parseInt(el.getAttribute("data-l"), 10);
+          if (ui.pairs[i] !== undefined) { delete ui.pairs[i]; ui.selL = i; }
+          else ui.selL = ui.selL === i ? null : i;
+          renderTest();
+        });
+      });
+      each("[data-r]", function (el) {
+        el.addEventListener("click", function () {
+          var pos = parseInt(el.getAttribute("data-r"), 10), owner;
+          Object.keys(ui.pairs).forEach(function (k) { if (ui.pairs[k] === pos) owner = k; });
+          if (ui.selL === null) {
+            if (owner !== undefined) delete ui.pairs[owner];
+          } else {
+            if (owner !== undefined) delete ui.pairs[owner];
+            ui.pairs[ui.selL] = pos;
+            ui.selL = null;
+          }
+          renderTest();
+        });
+      });
+    } else if (q.t === "tiles") {
+      each("[data-b]", function (el) {
+        el.addEventListener("click", function () {
+          ui.seq.push(parseInt(el.getAttribute("data-b"), 10));
+          renderTest();
+        });
+      });
+      each("[data-s]", function (el) {
+        el.addEventListener("click", function () {
+          ui.seq.splice(parseInt(el.getAttribute("data-s"), 10), 1);
+          renderTest();
+        });
+      });
+    }
+  }
+
+  function renderTestDone() {
+    var total = T.qs.length, pct = Math.round((T.score / total) * 100);
+    var st = testStore[T.test.id] || (testStore[T.test.id] = { runs: 0, best: null, last: null, seen: {} });
+    st.runs = (st.runs || 0) + 1;
+    st.last = pct;
+    st.best = st.best === null || st.best === undefined ? pct : Math.max(st.best, pct);
+    saveTests(testStore);
+
+    var html = '<div class="done"><div class="big">' + T.score + '<span> / ' + total + '</span></div>' +
+      '<div style="color:var(--ink-soft); font-size:13px; font-style:italic;">' + pct + '% correct on ' + T.test.short + '</div></div>';
+
+    var missed = T.results.filter(function (r) { return !r.ok; });
+    if (missed.length) {
+      html += '<div class="section-label">Review what you missed</div>';
+      missed.forEach(function (r) {
+        html += '<div class="rev"><div class="rtopic">' + r.q.slot + '</div><div class="rprompt">' + r.q.prompt + '</div>' +
+          '<div class="rans">' + answerText(r.q) + '</div>' + (r.q.why ? '<div class="why">' + r.q.why + '</div>' : '') + '</div>';
+      });
+    } else {
+      html += '<div class="nores">A perfect round. Retake for a fresh mix of questions on the same topics.</div>';
+    }
+    html += '<div class="actions" style="margin-top:20px"><button class="btn solid" id="retakeBtn">Retake with new questions</button></div>' +
+      '<div class="toolbar"><button id="testsHome">Back to tests</button></div>';
+    main.innerHTML = html;
+    document.getElementById("retakeBtn").addEventListener("click", function () { startTest(T.ti); });
+    document.getElementById("testsHome").addEventListener("click", goHome);
+  }
+
+  function renderTests() {
+    var html = renderTabs();
+    html += '<div class="section-label">Chapter tests</div>';
+    html += '<div class="chart-note" style="margin-bottom:14px">Each test covers the same topics every time. The questions rotate through different types (multiple choice, connect, build, type-in, parsing, translation) so a retake is a fresh mix. No vocabulary questions.</div>';
+    TESTS.forEach(function (t, i) {
+      var st = testStore[t.id] || {};
+      html += '<button class="deck" data-t="' + i + '">' +
+        '<div class="dt">' + t.name + '</div>' +
+        '<div class="dm"><span>' + t.slots.length + ' questions</span><span>' +
+        (st.runs ? "Last " + st.last + "% · Best " + st.best + "%" : "Not taken yet") + '</span></div></button>';
+    });
+    main.innerHTML = html;
+    bindTabs();
+    Array.prototype.forEach.call(main.querySelectorAll("[data-t]"), function (el) {
+      el.addEventListener("click", function () { startTest(parseInt(el.getAttribute("data-t"), 10)); });
+    });
+  }
+
+
   // ---------- views ----------
   function renderTabs() {
     return '<div class="tabs">' +
       '<button class="tabbtn' + (mainTab === "decks" ? " active" : "") + '" id="tabDecks">Flashcards</button>' +
       '<button class="tabbtn' + (mainTab === "charts" ? " active" : "") + '" id="tabCharts">Grammar Charts</button>' +
+      '<button class="tabbtn' + (mainTab === "tests" ? " active" : "") + '" id="tabTests">Tests</button>' +
       '</div>';
   }
 
@@ -883,6 +1734,10 @@
     });
     document.getElementById("tabCharts").addEventListener("click", function () {
       mainTab = "charts";
+      renderHome();
+    });
+    document.getElementById("tabTests").addEventListener("click", function () {
+      mainTab = "tests";
       renderHome();
     });
   }
@@ -1030,6 +1885,7 @@
 
   function renderHome() {
     if (mainTab === "charts") return renderCharts();
+    if (mainTab === "tests") return renderTests();
 
     var allCount = 0;
     DECKS.forEach(function (d) {
